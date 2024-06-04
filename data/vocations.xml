@@ -14,7 +14,7 @@
 		<skill id="5" base="33" multiplier="1.5"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 	</vocation>
-	<vocation id="1" name="Mage" description="a mage" gaincap="10" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="3"
+	<vocation id="1" name="Mage" description="a mage" gaincap="15" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="3"
 			gainmanaticks="3" gainmanaamount="2" attackspeed="1750">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
@@ -47,7 +47,7 @@
 	<vocation id="3" name="Knight" description="a knight" gaincap="25" gainhp="15" gainmana="10" gainhpticks="2" gainhpamount="5"
 			gainmanaticks="5" gainmanaamount="2" attackspeed="1750">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
-		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
+		<meleeDamage thrust="1.2" slash="1.2" bash="1.2" dist="1.0" fist="1.5" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
 		<skill id="0" base="12" multiplier="1.085"/>
@@ -59,7 +59,7 @@
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution promotes="6" rebirths="9"/>
 	</vocation>
-	<vocation id="4" name="Elder Mage" description="an elder mage" gaincap="10" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="4"
+	<vocation id="4" name="Elder Mage" description="an elder mage" gaincap="15" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="4"
 			gainmanaticks="2" gainmanaamount="2" attackspeed="1750">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
@@ -92,7 +92,7 @@
 	<vocation id="6" name="Elite Knight" description="an elite knight" gaincap="25" gainhp="15" gainmana="10" gainhpticks="2" gainhpamount="6"
 			gainmanaticks="4" gainmanaamount="2" attackspeed="1750">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
-		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
+		<meleeDamage thrust="1.2" slash="1.2" bash="1.2" dist="1.0" fist="1.5" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
 		<skill id="0" base="12" multiplier="1.085"/>
@@ -105,7 +105,7 @@
 		<evolution base="3" rebirths="9"/>
 	</vocation>
 
-	<vocation id="7" name="Sage" description="a sage" gaincap="10" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="3"
+	<vocation id="7" name="Sage" description="a sage" gaincap="15" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="3"
 			gainmanaticks="3" gainmanaamount="2" attackspeed="1000">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
@@ -138,7 +138,7 @@
 	<vocation id="9" name="Guardian" description="a guardian" gaincap="25" gainhp="15" gainmana="10" gainhpticks="2" gainhpamount="5"
 			gainmanaticks="5" gainmanaamount="2" attackspeed="1000">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
-		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
+		<meleeDamage thrust="1.2" slash="1.2" bash="1.2" dist="1.0" fist="1.5" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
 		<skill id="0" base="12" multiplier="1.085"/>
@@ -150,7 +150,7 @@
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="3" promotes="12"/>
 	</vocation>
-	<vocation id="10" name="Elder Sage" description="an elder sage" gaincap="10" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="4"
+	<vocation id="10" name="Elder Sage" description="an elder sage" gaincap="15" gainhp="5" gainmana="20" gainhpticks="2" gainhpamount="4"
 			gainmanaticks="2" gainmanaamount="2" attackspeed="1000">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
@@ -183,7 +183,7 @@
 	<vocation id="12" name="Elite Guardian" description="an elite guardian" gaincap="25" gainhp="15" gainmana="10" gainhpticks="2" gainhpamount="6"
 			gainmanaticks="4" gainmanaamount="2" attackspeed="1000">
 		<damage magicDamage="1.0" wandDamage="1.0" healingDamage="1.0" />
-		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
+		<meleeDamage thrust="1.2" slash="1.2" bash="1.2" dist="1.0" fist="1.5" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
 		<skill id="0" base="12" multiplier="1.085"/>

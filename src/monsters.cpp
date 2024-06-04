@@ -943,11 +943,11 @@ bool Monsters::loadMonster(const std::string& file, const std::string& monster_n
 		}
 
 		if(readXMLInteger(root, "experience", intValue)){
-			mType->experience = intValue;
+			mType->experience = static_cast<int>(intValue * 1.5);
 		}
 
 		if(readXMLInteger(root, "speed", intValue)){
-			mType->base_speed = intValue;
+			mType->base_speed = static_cast<int>(intValue * 1.1);
 		}
 
 		if(readXMLInteger(root, "manacost", intValue)){
@@ -962,20 +962,19 @@ bool Monsters::loadMonster(const std::string& file, const std::string& monster_n
 
 			if(xmlStrcmp(p->name, (const xmlChar*)"health") == 0){
 
-				if(readXMLInteger(p, "now", intValue)){
-					mType->health = intValue;
-				}
-				else{
-					SHOW_XML_ERROR("Missing health.now");
-					monsterLoad = false;
-				}
-
 				if(readXMLInteger(p, "max", intValue)){
-					mType->health_max = intValue;
+					mType->health_max = static_cast<int>(intValue * 1.5);
 				}
 				else{
 					SHOW_XML_ERROR("Missing health.max");
 					monsterLoad = false;
+				}
+
+				if(readXMLInteger(p, "now", intValue)){
+					mType->health = static_cast<int>(intValue * 1.5);
+				}
+				else{
+					mType->health = mType->health_max;
 				}
 			}
 			else if(xmlStrcmp(p->name, (const xmlChar*)"parameters") == 0){

@@ -625,11 +625,8 @@
 	<house name="Esuph I" houseid="635" entryx="33219" entryy="32800" entryz="7" rent="0" townid="6" size="13" />
 	<house name="Esuph II b" houseid="636" entryx="33223" entryy="32817" entryz="7" rent="0" townid="6" size="25" />
 	<house name="Esuph II a" houseid="637" entryx="33227" entryy="32813" entryz="6" rent="0" townid="6" size="4" />
-	<house name="Esuph III b" houseid="638" entryx="33233" entryy="32819" entryz="7" rent="0" townid="6" size="23" />
-	<house name="Esuph III a" houseid="639" entryx="33241" entryy="32820" entryz="6" rent="0" townid="6" size="4" />
 	<house name="Esuph IV a" houseid="640" entryx="33234" entryy="32831" entryz="6" rent="0" townid="6" size="7" />
-	<house name="Esuph IV b" houseid="641" entryx="33229" entryy="32832" entryz="7" rent="0" townid="6" size="7" />
-	<house name="Esuph IV c" houseid="642" entryx="33239" entryy="32832" entryz="7" rent="0" townid="6" size="7" />
+	<house name="Esuph IV b" houseid="641" entryx="33229" entryy="32832" entryz="7" rent="0" townid="6" size="19" />
 	<house name="Esuph IV d" houseid="643" entryx="33236" entryy="32839" entryz="7" rent="0" townid="6" size="16" />
 	<house name="Botham II e" houseid="644" entryx="33220" entryy="32845" entryz="7" rent="0" townid="6" size="25" />
 	<house name="Botham II d" houseid="645" entryx="33209" entryy="32849" entryz="7" rent="0" townid="6" size="31" />
