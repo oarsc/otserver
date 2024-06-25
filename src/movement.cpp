@@ -517,6 +517,7 @@ Event(_interface)
 	equipFunction = NULL;
 	slot = 0xFFFFFFFF;
 	reqLevel = 0;
+	isCombat = false;
 	reqMagLevel = 0;
 	premium = false;
 }
@@ -560,6 +561,11 @@ bool MoveEvent::configureEvent(xmlNodePtr p)
 {
 	std::string str;
 	int intValue;
+
+	if(readXMLInteger(p, "isCombat", intValue)){
+		isCombat = intValue > 0;
+	}
+
 	if(readXMLString(p, "event", str)){
 		if(asLowerCaseString(str) == "stepin"){
 			m_eventType = MOVE_EVENT_STEP_IN;
@@ -948,20 +954,31 @@ uint32_t MoveEvent::DeEquipItem(MoveEvent* moveEvent, Player* player, Item* item
 
 uint32_t MoveEvent::fireStepEvent(Creature* creature, Item* item, const Position& fromPos, const Position& toPos)
 {
-
-	if(m_scripted){
+	if (m_scripted) {
 		return executeStep(creature, item, fromPos, toPos);
-	}
-	else{
+	} else {
 		return stepFunction(creature, item, fromPos, toPos);
 	}
 }
 
 uint32_t MoveEvent::executeStep(Creature* creature, Item* item, const Position& fromPos, const Position& toPos)
 {
+	//onStepIn(cid, item, attackerPosition, position, var)
+	//onStepOut(cid, item, attackerPosition, position, var)
+	if (isCombat) {
+		uint32_t ownerId = item->getOwner();
+		if (ownerId != 0) {
+			Creature* owner = g_game.getCreatureByID(ownerId);
+			if (owner) {
+				return Attack::performCombatScript(m_scriptInterface, m_scriptId, owner, creature, item);
+			}
+		}
+		return false;
+	}
+
 	//onStepIn(cid, item, topos, frompos)
 	//onStepOut(cid, item, topos, frompos)
-	if(m_scriptInterface->reserveScriptEnv()){
+	if (m_scriptInterface->reserveScriptEnv()) {
 		ScriptEnviroment* env = m_scriptInterface->getScriptEnv();
 
 		#ifdef __DEBUG_LUASCRIPTS__
@@ -1054,6 +1071,27 @@ uint32_t MoveEvent::fireAddRemItem(Item* item, Item* tileItem, const Position& p
 
 uint32_t MoveEvent::executeAddRemItem(Item* item, Item* tileItem, const Position& pos)
 {
+	//onAddItem(cid, item, attackerPosition, position, var)
+	//onRemoveItem(cid, item, attackerPosition, position, var)
+	if (isCombat) {
+		uint32_t ownerId = item->getOwner();
+		if (ownerId > 0) {
+
+			Tile* tile = g_game.getTile(pos.x, pos.y, pos.z);
+
+			if(tile && tile->getCreatureCount() > 0) {
+				Creature* creature = tile->getCreatures()->front();
+				Creature* owner = g_game.getCreatureByID(ownerId);
+
+				if (owner && creature) {
+					return Attack::performCombatScript(m_scriptInterface, m_scriptId, owner, creature, item);
+				}
+			}
+		}
+
+		return false;
+	}
+
 	//onAddItem(moveitem, tileitem, pos)
 	//onRemoveItem(moveitem, tileitem, pos)
 	if(m_scriptInterface->reserveScriptEnv()){

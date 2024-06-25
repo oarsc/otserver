@@ -49,6 +49,14 @@ public:
         const std::function<bool(int32_t&)>& confirmation = nullptr
     );
 
+    static bool performCombatScript(
+        LuaScriptInterface* scriptInterface,
+        int32_t &scriptId,
+        Creature* attacker,
+        const Creature* target,
+        Item* item = nullptr
+    );
+
 private:
     static void attack(
         Creature* attacker, 

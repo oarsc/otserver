@@ -11711,7 +11711,7 @@
 		<attribute key="description" value="Step on it and you will be trapped."/>
 		<attribute key="type" value="magicfield"/>
 		<attribute key="decayTo" value="0"/>
-		<attribute key="duration" value="7"/>
+		<attribute key="duration" value="5"/>
 	</item>
 	<item id="5092" article="a" name="royal spear" plural="royal spears">
 		<attribute key="weight" value="1250"/>
@@ -11771,6 +11771,24 @@
 		<attribute key="type" value="rune"/>
 		<attribute key="weight" value="30"/>
 		<attribute key="runeSpellName" value="adevo mas grav vis"/>
+	</item>
+	<item id="5106" article="a" name="dead dragon">
+		<attribute key="containerSize" value="15"/>
+		<attribute key="decayTo" value="3105"/>
+		<attribute key="duration" value="600"/>
+		<attribute key="corpseType" value="blood"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="5107" article="a" name="mine">
+		<attribute key="description" value="Step on it and it will explode."/>
+		<attribute key="type" value="magicfield"/>
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="5"/>
+	</item>
+	<item id="5108" article="a" name="mine"> <!-- closed mine -->
+		<attribute key="type" value="magicfield"/>
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="1"/>
 	</item>
 	
 	<item id="20001" name="water" fluidClient="1"/>

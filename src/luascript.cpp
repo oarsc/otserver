@@ -1769,7 +1769,7 @@ void LuaScriptInterface::registerFunctions()
 	//doTargetCombatHealth(cid, target, type, min, max, effect)
 	lua_register(m_luaState, "doTargetCombatHealth", LuaScriptInterface::luaDoTargetCombatHealth);
 
-	//doTargetCombatHealth(cid, target, type, min, max, effect)
+	//doTargetCombatFreeze(cid, target, creatureFreeze, playerFreeze, itemRef)
 	lua_register(m_luaState, "doTargetCombatFreeze", LuaScriptInterface::luaDoTargetCombatFreeze);
 
 	//doAreaCombatMana(cid, pos, area, min, max, effect)

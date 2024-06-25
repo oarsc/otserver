@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="dragon" nameDescription="a dragon" race="blood" experience="700" speed="172" manacost="0">
-	<health now="1000" max="1000"/>
-	<look type="34" corpse="3104"/>
+<monster name="desert dragon" nameDescription="a desert dragon" race="blood" experience="1000" speed="180" manacost="0">
+	<health now="1200" max="1200"/>
+	<look type="46" corpse="5106"/>
 	<targetchange interval="1000" chance="5"/>
 	<targetstrategies nearest="70" health="10" damage="10" random="10"/>
 	<flags>
@@ -15,29 +15,28 @@
 		<flag canpushcreatures="1"/>
 		<flag targetdistance="1"/>
 		<flag staticattack="80"/>
-		<flag runonhealth="300"/>
+		<flag runonhealth="0"/>
 	</flags>
 	<attacks>
-		<attack name="melee" skill="55" attack="42"/>
-		<attack name="fire" chance="15" range="7" radius="4" target="1" min="-55" max="-105">
+		<attack name="melee" skill="50" attack="37"/>
+		<attack name="fire" chance="23" range="7" min="-65" max="-115">
 			<attribute key="shootEffect" value="fire"/>
-			<attribute key="areaEffect" value="firearea"/>
 		</attack>
-		<attack name="fire" chance="12" length="8" spread="3" min="-100" max="-160">
+		<attack name="fire" chance="17" length="4" spread="3" min="-110" max="-170"><!-- =((A1-MOD(A1,A2))/A2)*2+1 -->
 			<attribute key="areaEffect" value="firearea"/>
 		</attack>
 	</attacks>
 	<defenses armor="25" defense="104">
-		<defense name="healing" chance="13" min="34" max="56">
+		<defense name="healing" chance="13" min="56" max="78">
 			<attribute key="areaEffect" value="blueshimmer"/>
 		</defense>
 	</defenses>
 	<elements>
 		<element firePercent="100"/>
-		<element earthPercent="80"/>
-		<element energyPercent="20"/>
-		<element icePercent="-10"/>
-		<element physicalPercent="0" bashPercent="5" slashPercent="5" thrustPercent="-15"/>
+		<element earthPercent="100"/>
+		<element energyPercent="30"/>
+		<element icePercent="-20"/>
+		<element physicalPercent="0" bashPercent="10" slashPercent="10" thrustPercent="-10"/>
 	</elements>
 	<immunities>
 		<immunity paralyze="1"/>
@@ -48,23 +47,19 @@
 		<voice sentence="FCHHHHH" yell="1"/>
 	</voices>
 	<loot>
-		<item id="2672" chance="45000" countmax="3"/><!-- 3 45% dragon ham -->
-		<item id="2148" chance="90000" countmax="74"/><!-- 74 90% gold -->
+		<item id="2672" chance="45000" countmax="1"/><!-- 1 45% dragon ham -->
+		<item id="2148" chance="90000" countmax="100"/><!-- 100 90% gold -->
 		<item id="2145" chance="400"/><!-- 0.4% small diamond -->
 		<item id="2546" chance="16000" countmax="10"/><!-- 10 16% burst arrow -->
 		<item id="2177" chance="100"/><!-- 0.1% life crystal -->
-		<item id="2457" chance="3000"/><!-- 3% steel helmet -->
-		<item id="2647" chance="2000"/><!-- 2% plate legs -->
-		<item id="2455" chance="10000"/><!-- 10% crossbow -->
+		<item id="2456" chance="10000"/><!-- 10% bow -->
 		<item id="2397" chance="4000"/><!-- 4% longsword -->
 		<item id="2413" chance="2000"/><!-- 2% broadsword -->
 		<item id="2387" chance="1000"/><!-- 1% double axe -->
 		<item id="2434" chance="500"/><!-- 0.5% dragon hammer -->
-		<item id="2409" chance="500"/><!-- 0.5% serpent sword -->
-		<item id="2406" chance="25000"/><!-- 25% short sword -->
 		<item id="2398" chance="20000"/><!-- 20% mace -->
 		<item id="2187" chance="1000"/><!-- 1% wand of inferno -->
 		<item id="2509" chance="15000"/><!-- 15% steel shield -->
-		<item id="2516" chance="300"/><!-- 0.3% dragon shield -->
+		<item id="2392" chance="300"/><!-- 0.3% fire sword -->
 	</loot>
 </monster>

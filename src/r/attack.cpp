@@ -127,3 +127,51 @@ void Attack::attack(
 		g_game.addMagicEffect(target->getPosition(), params.impactEffect);
 	}
 }
+
+bool Attack::performCombatScript(
+	LuaScriptInterface* scriptInterface,
+	int32_t &scriptId,
+	Creature* attacker,
+	const Creature* target,
+	Item* item /* = nullptr */
+) {
+	//luaFunction(cid, item, attackerPosition, position, var)
+
+	LuaVariant var;
+	var.type = VARIANT_NUMBER;
+	var.number = target->getID();
+
+	if (scriptInterface->reserveScriptEnv()) {
+		ScriptEnviroment* env = scriptInterface->getScriptEnv();
+		LuaVariant var;
+		var.type = VARIANT_NUMBER;
+		var.number = target->getID();
+
+		env->setScriptId(scriptId, scriptInterface);
+		env->setRealPos(attacker->getPosition());
+
+		uint32_t cid = env->addThing(attacker);
+		uint32_t itemid = 0;
+		if (item) {
+			itemid = env->addThing(item);
+		}
+
+		lua_State* L = scriptInterface->getLuaState();
+
+		scriptInterface->pushFunction(scriptId);
+		lua_pushnumber(L, cid);
+		LuaScriptInterface::pushThing(L, item, itemid);
+		LuaScriptInterface::pushPosition(L, attacker->getPosition(), 0);
+		LuaScriptInterface::pushPosition(L, target->getPosition(), 0);
+		scriptInterface->pushVariant(L, var);
+
+		bool result = scriptInterface->callFunction(5);
+		scriptInterface->releaseScriptEnv();
+		return result;
+
+	} else {
+		std::cout << "[Error] Call stack overflow. Attack::performCombatScript" << std::endl;
+	}
+
+	return false;
+}

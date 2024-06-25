@@ -36,6 +36,7 @@
 	<monster name="Demon" file="demon.xml"/>
 	<monster name="Dog" file="dog.xml"/>
 	<monster name="Dragon Lord" file="dragon lord.xml"/>
+	<monster name="Desert Dragon" file="dragon desert.xml"/>
 	<monster name="Dragon" file="dragon.xml"/>
 	<monster name="Dwarf Geomancer" file="dwarf geomancer.xml"/>
 	<monster name="Dwarf Guard" file="dwarf guard.xml"/>

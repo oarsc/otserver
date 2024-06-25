@@ -135,6 +135,7 @@
 	<moveevent event="StepOut" itemid="4209" script="trap.lua"/>
 	<moveevent event="StepIn" itemid="5091" script="trap_immobilize.lua"/>
 	<moveevent event="AddItem" itemid="5091" script="trap_immobilize.lua"/>
+	<moveevent event="StepIn" itemid="5107" script="trap_spell.lua" isCombat="1"/>
 	
 	<!-- Items -->
 	<!-- Boots -->

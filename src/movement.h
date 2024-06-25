@@ -25,6 +25,7 @@
 #include "luascript.h"
 #include "baseevents.h"
 #include "creature.h"
+#include "r/attack.h"
 #include <map>
 
 enum MoveEvent_t{
@@ -144,6 +145,7 @@ protected:
 	MoveFunction* moveFunction;
 	EquipFunction* equipFunction;
 	uint32_t slot;
+	bool isCombat;
 
 	//onEquip information
 	uint32_t reqLevel;

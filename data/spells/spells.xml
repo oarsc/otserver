@@ -181,6 +181,9 @@
 	<aim name="Deploy Trap" words="osevo ani" price="500" maglv="7" needlearn="1" lvl="20" mana="26" exhaustion="1000" range="6" uses="position" script="support/deploy_trap.lua">
 		<vocation id="2"/>
 	</aim>
+	<aim name="Deploy Mine" words="osevo corp" price="3000" maglv="11" needlearn="1" lvl="30" mana="60" exhaustion="1000" range="6" uses="position" script="support/deploy_mine.lua">
+		<vocation id="2"/>
+	</aim>
 	<aim name="Target Force Strike" type="attack" words="osori corp" price="600" maglv="1" needlearn="1" lvl="20" mana="14" exhaustion="2000" range="6" uses="creature" script="attack/target_force_strike.lua">
 		<vocation id="3"/>
 	</aim>
