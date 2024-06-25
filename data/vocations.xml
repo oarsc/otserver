@@ -6,10 +6,10 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="4.0"/>
-		<skill id="0" base="20" multiplier="1.5"/>
-		<skill id="1" base="20" multiplier="2.0"/>
-		<skill id="2" base="20" multiplier="2.0"/>
-		<skill id="3" base="20" multiplier="2.0"/>
+		<skill id="0" base="12" multiplier="1.5"/>
+		<skill id="1" base="12" multiplier="2.0"/>
+		<skill id="2" base="12" multiplier="2.0"/>
+		<skill id="3" base="12" multiplier="2.0"/>
 		<skill id="4" base="12" multiplier="2.0"/>
 		<skill id="5" base="33" multiplier="1.5"/>
 		<skill id="6" base="8" multiplier="1.1"/>
@@ -20,12 +20,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="700" multiplier="1.09"/>
-		<skill id="0" base="20" multiplier="1.5"/>
-		<skill id="1" base="20" multiplier="1.8"/>
-		<skill id="2" base="20" multiplier="1.8"/>
-		<skill id="3" base="20" multiplier="1.8"/>
-		<skill id="4" base="12" multiplier="1.8"/>
-		<skill id="5" base="33" multiplier="1.5"/>
+		<skill id="0" base="12" multiplier="1.4"/>
+		<skill id="1" base="12" multiplier="1.6"/>
+		<skill id="2" base="12" multiplier="1.6"/>
+		<skill id="3" base="12" multiplier="1.6"/>
+		<skill id="4" base="12" multiplier="1.6"/>
+		<skill id="5" base="27" multiplier="1.4"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution promotes="4" rebirths="7"/>
 	</vocation>
@@ -35,12 +35,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="750" multiplier="1.39"/>
-		<skill id="0" base="20" multiplier="1.2"/>
-		<skill id="1" base="20" multiplier="1.2"/>
-		<skill id="2" base="20" multiplier="1.2"/>
-		<skill id="3" base="20" multiplier="1.2"/>
-		<skill id="4" base="12" multiplier="1.09"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.2"/>
+		<skill id="1" base="12" multiplier="1.2"/>
+		<skill id="2" base="12" multiplier="1.2"/>
+		<skill id="3" base="12" multiplier="1.2"/>
+		<skill id="4" base="12" multiplier="1.085"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution promotes="5" rebirths="8"/>
 	</vocation>
@@ -50,12 +50,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
-		<skill id="0" base="20" multiplier="1.09"/>
-		<skill id="1" base="20" multiplier="1.09"/>
-		<skill id="2" base="20" multiplier="1.09"/>
-		<skill id="3" base="20" multiplier="1.09"/>
-		<skill id="4" base="12" multiplier="1.4"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.085"/>
+		<skill id="1" base="12" multiplier="1.085"/>
+		<skill id="2" base="12" multiplier="1.085"/>
+		<skill id="3" base="12" multiplier="1.085"/>
+		<skill id="4" base="12" multiplier="1.2"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution promotes="6" rebirths="9"/>
 	</vocation>
@@ -65,12 +65,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="700" multiplier="1.09"/>
-		<skill id="0" base="20" multiplier="1.5"/>
-		<skill id="1" base="20" multiplier="2.0"/>
-		<skill id="2" base="20" multiplier="2.0"/>
-		<skill id="3" base="20" multiplier="2.0"/>
-		<skill id="4" base="12" multiplier="2.0"/>
-		<skill id="5" base="33" multiplier="1.5"/>
+		<skill id="0" base="12" multiplier="1.4"/>
+		<skill id="1" base="12" multiplier="1.6"/>
+		<skill id="2" base="12" multiplier="1.6"/>
+		<skill id="3" base="12" multiplier="1.6"/>
+		<skill id="4" base="12" multiplier="1.6"/>
+		<skill id="5" base="27" multiplier="1.4"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="1" rebirths="7"/>
 	</vocation>
@@ -80,12 +80,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="750" multiplier="1.39"/>
-		<skill id="0" base="20" multiplier="1.2"/>
-		<skill id="1" base="20" multiplier="1.2"/>
-		<skill id="2" base="20" multiplier="1.2"/>
-		<skill id="3" base="20" multiplier="1.2"/>
-		<skill id="4" base="12" multiplier="1.09"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.2"/>
+		<skill id="1" base="12" multiplier="1.2"/>
+		<skill id="2" base="12" multiplier="1.2"/>
+		<skill id="3" base="12" multiplier="1.2"/>
+		<skill id="4" base="12" multiplier="1.085"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="2" rebirths="8"/>
 	</vocation>
@@ -95,12 +95,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
-		<skill id="0" base="20" multiplier="1.09"/>
-		<skill id="1" base="20" multiplier="1.09"/>
-		<skill id="2" base="20" multiplier="1.09"/>
-		<skill id="3" base="20" multiplier="1.09"/>
-		<skill id="4" base="12" multiplier="1.4"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.085"/>
+		<skill id="1" base="12" multiplier="1.085"/>
+		<skill id="2" base="12" multiplier="1.085"/>
+		<skill id="3" base="12" multiplier="1.085"/>
+		<skill id="4" base="12" multiplier="1.2"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="3" rebirths="9"/>
 	</vocation>
@@ -111,12 +111,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="700" multiplier="1.09"/>
-		<skill id="0" base="20" multiplier="1.5"/>
-		<skill id="1" base="20" multiplier="1.8"/>
-		<skill id="2" base="20" multiplier="1.8"/>
-		<skill id="3" base="20" multiplier="1.8"/>
-		<skill id="4" base="12" multiplier="1.8"/>
-		<skill id="5" base="33" multiplier="1.5"/>
+		<skill id="0" base="12" multiplier="1.4"/>
+		<skill id="1" base="12" multiplier="1.6"/>
+		<skill id="2" base="12" multiplier="1.6"/>
+		<skill id="3" base="12" multiplier="1.6"/>
+		<skill id="4" base="12" multiplier="1.6"/>
+		<skill id="5" base="27" multiplier="1.4"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="1" promotes="10"/>
 	</vocation>
@@ -126,12 +126,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="750" multiplier="1.39"/>
-		<skill id="0" base="20" multiplier="1.2"/>
-		<skill id="1" base="20" multiplier="1.2"/>
-		<skill id="2" base="20" multiplier="1.2"/>
-		<skill id="3" base="20" multiplier="1.2"/>
-		<skill id="4" base="12" multiplier="1.09"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.2"/>
+		<skill id="1" base="12" multiplier="1.2"/>
+		<skill id="2" base="12" multiplier="1.2"/>
+		<skill id="3" base="12" multiplier="1.2"/>
+		<skill id="4" base="12" multiplier="1.085"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="2" promotes="11"/>
 	</vocation>
@@ -141,12 +141,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
-		<skill id="0" base="20" multiplier="1.09"/>
-		<skill id="1" base="20" multiplier="1.09"/>
-		<skill id="2" base="20" multiplier="1.09"/>
-		<skill id="3" base="20" multiplier="1.09"/>
-		<skill id="4" base="12" multiplier="1.4"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.085"/>
+		<skill id="1" base="12" multiplier="1.085"/>
+		<skill id="2" base="12" multiplier="1.085"/>
+		<skill id="3" base="12" multiplier="1.085"/>
+		<skill id="4" base="12" multiplier="1.2"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="3" promotes="12"/>
 	</vocation>
@@ -156,12 +156,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="700" multiplier="1.09"/>
-		<skill id="0" base="20" multiplier="1.5"/>
-		<skill id="1" base="20" multiplier="1.8"/>
-		<skill id="2" base="20" multiplier="1.8"/>
-		<skill id="3" base="20" multiplier="1.8"/>
-		<skill id="4" base="12" multiplier="1.8"/>
-		<skill id="5" base="33" multiplier="1.5"/>
+		<skill id="0" base="12" multiplier="1.4"/>
+		<skill id="1" base="12" multiplier="1.6"/>
+		<skill id="2" base="12" multiplier="1.6"/>
+		<skill id="3" base="12" multiplier="1.6"/>
+		<skill id="4" base="12" multiplier="1.6"/>
+		<skill id="5" base="27" multiplier="1.4"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="1"/>
 	</vocation>
@@ -171,12 +171,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="750" multiplier="1.39"/>
-		<skill id="0" base="20" multiplier="1.2"/>
-		<skill id="1" base="20" multiplier="1.2"/>
-		<skill id="2" base="20" multiplier="1.2"/>
-		<skill id="3" base="20" multiplier="1.2"/>
-		<skill id="4" base="12" multiplier="1.09"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.2"/>
+		<skill id="1" base="12" multiplier="1.2"/>
+		<skill id="2" base="12" multiplier="1.2"/>
+		<skill id="3" base="12" multiplier="1.2"/>
+		<skill id="4" base="12" multiplier="1.085"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="2"/>
 	</vocation>
@@ -186,12 +186,12 @@
 		<meleeDamage thrust="1.0" slash="1.0" bash="1.0" dist="1.0" fist="1.0" />
 		<defense baseDefense="1.0" armorDefense="1.0" />
 		<magic base="850" multiplier="2.7"/>
-		<skill id="0" base="20" multiplier="1.09"/>
-		<skill id="1" base="20" multiplier="1.09"/>
-		<skill id="2" base="20" multiplier="1.09"/>
-		<skill id="3" base="20" multiplier="1.09"/>
-		<skill id="4" base="12" multiplier="1.4"/>
-		<skill id="5" base="33" multiplier="1.09"/>
+		<skill id="0" base="12" multiplier="1.085"/>
+		<skill id="1" base="12" multiplier="1.085"/>
+		<skill id="2" base="12" multiplier="1.085"/>
+		<skill id="3" base="12" multiplier="1.085"/>
+		<skill id="4" base="12" multiplier="1.2"/>
+		<skill id="5" base="25" multiplier="1.085"/>
 		<skill id="6" base="8" multiplier="1.1"/>
 		<evolution base="3"/>
 	</vocation>

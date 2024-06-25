@@ -306,7 +306,7 @@ void Vocation::loadCacheSkillValues()
 		maxSkill = 1000;
 	}
 
-	for (int skill = SKILL_FIRST; skill<=SKILL_LAST; skill++) {
+	for (int skill = SKILL_FIRST; skill <= SKILL_LAST; skill++) {
 		skillCacheMap& skillMap = cacheSkill[skill];
 		const float &mult = skillMultipliers[skill];
 
