@@ -1,4 +1,4 @@
-local MAX_FOOD = 1200/15
+local MAX_FOOD = 120
 
 function onUse(cid, item, fromPosition, itemEx, toPosition)
 	if (FOODS[item.itemid] == nil) then
@@ -8,7 +8,7 @@ function onUse(cid, item, fromPosition, itemEx, toPosition)
 	local size = math.ceil(FOODS[item.itemid][1]/15)
 	local sound = FOODS[item.itemid][2]
 
-	if (getPlayerFood(cid) + size > MAX_FOOD) then
+	if (getPlayerFood(cid) > MAX_FOOD) then
 		doPlayerSendCancel(cid, "You are full.")
 		return true
 	end
