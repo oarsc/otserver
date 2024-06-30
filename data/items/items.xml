@@ -3882,7 +3882,9 @@
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2166"/>
-		<attribute key="skillFist" value="6"/>
+		<attribute key="skillFist" value="25"/>
+		<attribute key="skillDist" value="10"/>
+		<attribute key="skillShield" value="-20"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
 	</item>
@@ -3942,7 +3944,8 @@
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2207"/>
-		<attribute key="skillThrust" value="4"/>
+		<attribute key="skillThrust" value="10"/>
+		<attribute key="skillShield" value="10"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
 	</item>
@@ -3951,7 +3954,8 @@
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2208"/>
-		<attribute key="skillSlash" value="4"/>
+		<attribute key="skillSlash" value="10"/>
+		<attribute key="skillShield" value="10"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
 	</item>
@@ -3960,7 +3964,8 @@
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2209"/>
-		<attribute key="skillBash" value="4"/>
+		<attribute key="skillBash" value="10"/>
+		<attribute key="skillShield" value="10"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
 	</item>
