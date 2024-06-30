@@ -39,7 +39,7 @@
 	<elements>
 		<element firePercent="80"/>
 		<element energyPercent="50"/>
-		<element physicalPercent="30" bashPercent="30" slashPercent="30" thrustPercent="30"/>
+		<element physicalPercent="30" strikePercent="30" slashPercent="30" piercePercent="30"/>
 		<element deathPercent="20"/>
 		<element icePercent="-10"/>
 		<element holyPercent="-10"/>

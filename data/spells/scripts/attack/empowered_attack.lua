@@ -1,5 +1,5 @@
 local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_BASHDAMAGE)
+setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_STRIKEDAMAGE)
 setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_HITAREA)
 setCombatParam(combat, COMBAT_PARAM_BLOCKARMOR, 1)
 

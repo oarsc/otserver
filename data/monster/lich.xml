@@ -45,7 +45,7 @@
 		<element deathPercent="100"/>
 		<element earthPercent="100"/>
 		<element energyPercent="80"/>
-		<element physicalPercent="0" bashPercent="-20" slashPercent="20" thrustPercent="20"/>
+		<element physicalPercent="0" strikePercent="-20" slashPercent="20" piercePercent="20"/>
 		<element holyPercent="-35"/>
 	</elements>
 	<immunities>

@@ -1569,7 +1569,7 @@
 		<attribute key="weight" value="360"/>
 		<attribute key="attack" value="5"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="bash"/>
+		<attribute key="damageType" value="strike"/>
 		<attribute key="shootType" value="smallstone"/>
 		<attribute key="range" value="6"/>
 		<attribute key="breakChance" value="3"/>
@@ -3465,7 +3465,7 @@
 		<attribute key="weight" value="80"/>
 		<attribute key="attack" value="0"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="bash"/>
+		<attribute key="damageType" value="strike"/>
 		<attribute key="shootType" value="snowball"/>
 		<attribute key="range" value="5"/>
 		<attribute key="ammoAction" value="removecount"/>
@@ -3918,7 +3918,7 @@
 		<attribute key="showduration" value="1"/>
 		<attribute key="speed" value="120"/>
 	</item>
-	<item id="2207" article="a" name="thrust ring">
+	<item id="2207" article="a" name="pierce ring">
 		<attribute key="weight" value="90"/>
 		<attribute key="slotType" value="ring"/>
 		<attribute key="transformEquipTo" value="2210"/>
@@ -3932,19 +3932,19 @@
 		<attribute key="stopduration" value="1"/>
 		<attribute key="showduration" value="1"/>
 	</item>
-	<item id="2209" article="a" name="bash ring">
+	<item id="2209" article="a" name="strike ring">
 		<attribute key="weight" value="90"/>
 		<attribute key="slotType" value="ring"/>
 		<attribute key="transformEquipTo" value="2212"/>
 		<attribute key="stopduration" value="1"/>
 		<attribute key="showduration" value="1"/>
 	</item>
-	<item id="2210" article="a" name="thrust ring">
+	<item id="2210" article="a" name="pierce ring">
 		<attribute key="weight" value="90"/>
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2207"/>
-		<attribute key="skillThrust" value="10"/>
+		<attribute key="skillPierce" value="10"/>
 		<attribute key="skillShield" value="10"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
@@ -3959,12 +3959,12 @@
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
 	</item>
-	<item id="2212" article="a" name="bash ring">
+	<item id="2212" article="a" name="strike ring">
 		<attribute key="weight" value="90"/>
 		<attribute key="slotType" value="ring"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="transformDeEquipTo" value="2209"/>
-		<attribute key="skillBash" value="10"/>
+		<attribute key="skillStrike" value="10"/>
 		<attribute key="skillShield" value="10"/>
 		<attribute key="duration" value="1800"/>
 		<attribute key="showduration" value="1"/>
@@ -4401,7 +4401,7 @@
 		<attribute key="defense" value="14"/>
 		<attribute key="attack" value="24"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2322" article="a" name="voodoo doll">
 		<attribute key="description" value="It looks like a little king."/>
@@ -4646,7 +4646,7 @@
 		<attribute key="defense" value="6"/>
 		<attribute key="attack" value="8"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2380" article="a" name="hand axe">
 		<attribute key="weight" value="1800"/>
@@ -4668,7 +4668,7 @@
 		<attribute key="defense" value="7"/>
 		<attribute key="attack" value="7"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2383" article="a" name="spike sword">
 		<attribute key="weight" value="5000"/>
@@ -4682,7 +4682,7 @@
 		<attribute key="defense" value="8"/>
 		<attribute key="attack" value="10"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2385" article="a" name="sabre">
 		<attribute key="weight" value="2500"/>
@@ -4717,7 +4717,7 @@
 		<attribute key="weight" value="1000"/>
 		<attribute key="attack" value="25"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="shootType" value="spear"/>
 		<attribute key="range" value="5"/>
 		<attribute key="breakChance" value="1"/>
@@ -4737,7 +4737,7 @@
 		<attribute key="defense" value="10"/>
 		<attribute key="attack" value="45"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2392" article="a" name="fire sword">
@@ -4762,7 +4762,7 @@
 		<attribute key="defense" value="11"/>
 		<attribute key="attack" value="25"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2395" article="a" name="carlin sword">
 		<attribute key="weight" value="4000"/>
@@ -4777,7 +4777,7 @@
 		<attribute key="attack" value="100"/>
 		<attribute key="defense" value="1"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 		<attribute key="charges" value="1"/>
 	</item>
 	<item id="2397" article="a" name="longsword">
@@ -4785,14 +4785,14 @@
 		<attribute key="defense" value="14"/>
 		<attribute key="attack" value="17"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2398" article="a" name="mace">
 		<attribute key="weight" value="3800"/>
 		<attribute key="defense" value="11"/>
 		<attribute key="attack" value="16"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2399" article="a" name="throwing star" plural="throwing stars">
 		<attribute key="weight" value="200"/>
@@ -4817,7 +4817,7 @@
 		<attribute key="defense" value="25"/>
 		<attribute key="attack" value="10"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2402" article="a" name="silver dagger">
@@ -4825,21 +4825,21 @@
 		<attribute key="defense" value="7"/>
 		<attribute key="attack" value="9"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2403" article="a" name="knife">
 		<attribute key="weight" value="420"/>
 		<attribute key="defense" value="5"/>
 		<attribute key="attack" value="5"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2404" article="a" name="combat knife">
 		<attribute key="weight" value="870"/>
 		<attribute key="defense" value="6"/>
 		<attribute key="attack" value="8"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2405" article="a" name="sickle">
 		<attribute key="weight" value="1050"/>
@@ -4883,7 +4883,7 @@
 		<attribute key="weight" value="500"/>
 		<attribute key="attack" value="25"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="shootType" value="throwingknife"/>
 		<attribute key="range" value="4"/>
 		<attribute key="breakChance" value="3"/>
@@ -4894,7 +4894,7 @@
 		<attribute key="defense" value="8"/>
 		<attribute key="attack" value="18"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2412" article="a" name="katana">
 		<attribute key="weight" value="3100"/>
@@ -4935,14 +4935,14 @@
 		<attribute key="defense" value="6"/>
 		<attribute key="attack" value="5"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2417" article="a" name="battle hammer">
 		<attribute key="weight" value="6800"/>
 		<attribute key="defense" value="14"/>
 		<attribute key="attack" value="24"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2418" article="a" name="golden sickle">
 		<attribute key="weight" value="1950"/>
@@ -4971,21 +4971,21 @@
 		<attribute key="defense" value="35"/>
 		<attribute key="attack" value="49"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2422" article="an" name="iron hammer">
 		<attribute key="weight" value="6600"/>
 		<attribute key="defense" value="10"/>
 		<attribute key="attack" value="18"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2423" article="a" name="clerical mace">
 		<attribute key="weight" value="5800"/>
 		<attribute key="defense" value="15"/>
 		<attribute key="attack" value="28"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2424" article="a" name="silver mace">
 		<attribute key="description" value="You feel an aura of protection."/>
@@ -4993,7 +4993,7 @@
 		<attribute key="defense" value="30"/>
 		<attribute key="attack" value="41"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2425" article="an" name="obsidian lance">
 		<attribute key="weight" value="8000"/>
@@ -5062,7 +5062,7 @@
 		<attribute key="defense" value="45"/>
 		<attribute key="attack" value="39"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="decayTo" value="2401"/>
 		<attribute key="duration" value="60"/>
@@ -5072,7 +5072,7 @@
 		<attribute key="defense" value="20"/>
 		<attribute key="attack" value="32"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2435" article="a" name="dwarven axe">
 		<attribute key="weight" value="8200"/>
@@ -5087,28 +5087,28 @@
 		<attribute key="defense" value="12"/>
 		<attribute key="attack" value="36"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2437" article="a" name="light mace">
 		<attribute key="weight" value="4100"/>
 		<attribute key="defense" value="9"/>
 		<attribute key="attack" value="14"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2438" article="an" name="epee">
 		<attribute key="weight" value="1450"/>
 		<attribute key="defense" value="23"/>
 		<attribute key="attack" value="37"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="2439" article="a" name="daramanian mace">
 		<attribute key="weight" value="6800"/>
 		<attribute key="defense" value="12"/>
 		<attribute key="attack" value="21"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2440" article="a" name="daramanian waraxe">
 		<attribute key="weight" value="5250"/>
@@ -5146,7 +5146,7 @@
 		<attribute key="defense" value="12"/>
 		<attribute key="attack" value="48"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2445" article="a" name="crystal mace">
@@ -5154,7 +5154,7 @@
 		<attribute key="defense" value="16"/>
 		<attribute key="attack" value="38"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2446" article="a" name="pharaoh sword">
 		<attribute key="weight" value="5200"/>
@@ -5177,7 +5177,7 @@
 		<attribute key="defense" value="8"/>
 		<attribute key="attack" value="9"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2449" article="a" name="bone club">
 		<attribute key="description" value="It apparently originally belonged to some lesser undead."/>
@@ -5185,7 +5185,7 @@
 		<attribute key="defense" value="8"/>
 		<attribute key="attack" value="12"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="2450" article="a" name="bone sword">
 		<attribute key="weight" value="1900"/>
@@ -5207,7 +5207,7 @@
 		<attribute key="defense" value="15"/>
 		<attribute key="attack" value="49"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2453" article="an" name="arcane staff">
@@ -5216,7 +5216,7 @@
 		<attribute key="defense" value="30"/>
 		<attribute key="attack" value="50"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 		<attribute key="slotType" value="two-handed"/>
 	</item>
 	<item id="2454" article="a" name="war axe">
@@ -5777,7 +5777,7 @@
 		<attribute key="slotType" value="ammo"/>
 		<attribute key="attack" value="32"/>
 		<attribute key="weaponType" value="ammunition"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="ammoType" value="bolt"/>
 		<attribute key="shootType" value="bolt"/>
 		<attribute key="ammoAction" value="removecount"/>
@@ -5788,7 +5788,7 @@
 		<attribute key="slotType" value="ammo"/>
 		<attribute key="attack" value="25"/>
 		<attribute key="weaponType" value="ammunition"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="ammoType" value="arrow"/>
 		<attribute key="shootType" value="arrow"/>
 		<attribute key="ammoAction" value="removecount"/>
@@ -5821,7 +5821,7 @@
 		<attribute key="slotType" value="ammo"/>
 		<attribute key="attack" value="45"/>
 		<attribute key="weaponType" value="ammunition"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="ammoType" value="bolt"/>
 		<attribute key="shootType" value="powerbolt"/>
 		<attribute key="ammoAction" value="removecount"/>
@@ -9568,7 +9568,7 @@
 		<attribute key="defense" value="30"/>
 		<attribute key="attack" value="40"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="3962" article="a" name="beastslayer axe">
 		<attribute key="weight" value="6150"/>
@@ -9582,7 +9582,7 @@
 		<attribute key="defense" value="15"/>
 		<attribute key="attack" value="23"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="thrust"/>
+		<attribute key="weaponType" value="pierce"/>
 	</item>
 	<item id="3964" article="a" name="ripper lance">
 		<attribute key="weight" value="8000"/>
@@ -9596,7 +9596,7 @@
 		<attribute key="weight" value="2200"/>
 		<attribute key="attack" value="32"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="shootType" value="spear"/>
 		<attribute key="range" value="3"/>
 		<attribute key="breakChance" value="5"/>
@@ -9607,7 +9607,7 @@
 		<attribute key="defense" value="15"/>
 		<attribute key="attack" value="25"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="3967" article="a" name="tribal mask">
 		<attribute key="weight" value="2500"/>
@@ -11292,7 +11292,7 @@
 		<attribute key="defense" value="10"/>
 		<attribute key="attack" value="18"/>
 		<attribute key="rankLevel" value="5"/>
-		<attribute key="weaponType" value="bash"/>
+		<attribute key="weaponType" value="strike"/>
 	</item>
 	<item id="4847" article="a" name="simple dress">
 		<attribute key="weight" value="2400"/>
@@ -11722,7 +11722,7 @@
 		<attribute key="weight" value="1250"/>
 		<attribute key="attack" value="32"/>
 		<attribute key="weaponType" value="distance"/>
-		<attribute key="damageType" value="thrust"/>
+		<attribute key="damageType" value="pierce"/>
 		<attribute key="shootType" value="royalspear"/>
 		<attribute key="range" value="5"/>
 		<attribute key="breakChance" value="1"/>

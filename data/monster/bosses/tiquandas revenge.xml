@@ -33,7 +33,7 @@
 	</defenses>
 	<elements>
 		<element earthPercent="100"/>
-		<element physicalPercent="1" bashPercent="1" slashPercent="1" thrustPercent="1"/>
+		<element physicalPercent="1" strikePercent="1" slashPercent="1" piercePercent="1"/>
 		<element deathPercent="1"/>
 		<element icePercent="1"/>
 		<element firePercent="-1"/>

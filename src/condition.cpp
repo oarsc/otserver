@@ -660,17 +660,17 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 	switch(param){
 		case CONDITIONPARAM_SKILL_MELEE:
 		{
-			skills[SKILL_BASH] = value;
+			skills[SKILL_STRIKE] = value;
+			skills[SKILL_PIERCE] = value;
 			skills[SKILL_SLASH] = value;
-			skills[SKILL_THRUST] = value;
 			return true;
 		}
 
 		case CONDITIONPARAM_SKILL_MELEEPERCENT:
 		{
-			skillsPercent[SKILL_BASH] = value;
+			skillsPercent[SKILL_STRIKE] = value;
+			skillsPercent[SKILL_PIERCE] = value;
 			skillsPercent[SKILL_SLASH] = value;
-			skillsPercent[SKILL_THRUST] = value;
 			return true;
 		}
 
@@ -686,27 +686,15 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 			return true;
 		}
 
-		case CONDITIONPARAM_SKILL_BASH:
+		case CONDITIONPARAM_SKILL_STRIKE:
 		{
-			skills[SKILL_BASH] = value;
+			skills[SKILL_STRIKE] = value;
 			return true;
 		}
 
-		case CONDITIONPARAM_SKILL_BASHPERCENT:
+		case CONDITIONPARAM_SKILL_STRIKEPERCENT:
 		{
-			skillsPercent[SKILL_BASH] = value;
-			return true;
-		}
-
-		case CONDITIONPARAM_SKILL_THRUST:
-		{
-			skills[SKILL_THRUST] = value;
-			return true;
-		}
-
-		case CONDITIONPARAM_SKILL_THRUSTPERCENT:
-		{
-			skillsPercent[SKILL_THRUST] = value;
+			skillsPercent[SKILL_STRIKE] = value;
 			return true;
 		}
 
@@ -719,6 +707,18 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 		case CONDITIONPARAM_SKILL_SLASHPERCENT:
 		{
 			skillsPercent[SKILL_SLASH] = value;
+			return true;
+		}
+
+		case CONDITIONPARAM_SKILL_PIERCE:
+		{
+			skills[SKILL_PIERCE] = value;
+			return true;
+		}
+
+		case CONDITIONPARAM_SKILL_PIERCEPERCENT:
+		{
+			skillsPercent[SKILL_PIERCE] = value;
 			return true;
 		}
 

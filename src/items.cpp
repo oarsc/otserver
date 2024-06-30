@@ -731,11 +731,11 @@ bool Items::loadFromXml(const std::string& datadir)
 						}
 						else if(asLowerCaseString(strValue) == "weapontype"){
 							if(readXMLString(itemAttributesNode, "value", strValue)){
-								if(asLowerCaseString(strValue) == "thrust"){
-									it.weaponType = WEAPON_THRUST;
+								if(asLowerCaseString(strValue) == "pierce"){
+									it.weaponType = WEAPON_PIERCE;
 								}
-								else if(asLowerCaseString(strValue) == "bash"){
-									it.weaponType = WEAPON_BASH;
+								else if(asLowerCaseString(strValue) == "strike"){
+									it.weaponType = WEAPON_STRIKE;
 								}
 								else if(asLowerCaseString(strValue) == "slash"){
 									it.weaponType = WEAPON_SLASH;
@@ -768,8 +768,8 @@ bool Items::loadFromXml(const std::string& datadir)
 								else if(asLowerCaseString(strValue) == "death")  it.damageType = COMBAT_DEATHDAMAGE;
 								else if(asLowerCaseString(strValue) == "holy")   it.damageType = COMBAT_HOLYDAMAGE;
 								else if(asLowerCaseString(strValue) == "slash")  it.damageType = COMBAT_SLASHDAMAGE;
-								else if(asLowerCaseString(strValue) == "bash")   it.damageType = COMBAT_BASHDAMAGE;
-								else if(asLowerCaseString(strValue) == "thrust") it.damageType = COMBAT_THRUSTDAMAGE;
+								else if(asLowerCaseString(strValue) == "strike")   it.damageType = COMBAT_STRIKEDAMAGE;
+								else if(asLowerCaseString(strValue) == "pierce") it.damageType = COMBAT_PIERCEDAMAGE;
 								else{
 									std::cout << "Warning: [Items::loadFromXml] " << "Unknown damageType " << strValue  << std::endl;
 								}
@@ -982,9 +982,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								it.abilities.manaShield = (intValue != 0);
 							}
 						}
-						else if(asLowerCaseString(strValue) == "skillthrust"){
+						else if(asLowerCaseString(strValue) == "skillpierce"){
 							if(readXMLInteger(itemAttributesNode, "value", intValue)){
-								it.abilities.skill.upgrades[SKILL_THRUST] = intValue;
+								it.abilities.skill.upgrades[SKILL_PIERCE] = intValue;
 							}
 						}
 						else if(asLowerCaseString(strValue) == "skillslash"){
@@ -992,9 +992,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								it.abilities.skill.upgrades[SKILL_SLASH] = intValue;
 							}
 						}
-						else if(asLowerCaseString(strValue) == "skillbash"){
+						else if(asLowerCaseString(strValue) == "skillstrike"){
 							if(readXMLInteger(itemAttributesNode, "value", intValue)){
-								it.abilities.skill.upgrades[SKILL_BASH] = intValue;
+								it.abilities.skill.upgrades[SKILL_STRIKE] = intValue;
 							}
 						}
 						else if(asLowerCaseString(strValue) == "skilldist"){
@@ -1057,9 +1057,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_DEATHDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_HOLYDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PHYSICALDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_BASHDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_STRIKEDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_SLASHDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_THRUSTDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PIERCEDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_LIFEDRAIN)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_MANADRAIN)] = intValue;
 							}
@@ -1074,9 +1074,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_DEATHDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_HOLYDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PHYSICALDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_BASHDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_STRIKEDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_SLASHDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_THRUSTDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PIERCEDAMAGE)] = intValue;
 							}
 						}
 						else if(asLowerCaseString(strValue) == "absorbpercentenergy"){
@@ -1124,9 +1124,9 @@ bool Items::loadFromXml(const std::string& datadir)
 						else if(asLowerCaseString(strValue) == "absorbpercentphysical"){
 							if(readXMLInteger(itemAttributesNode, "value", intValue)){
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PHYSICALDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_BASHDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_STRIKEDAMAGE)] = intValue;
 								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_SLASHDAMAGE)] = intValue;
-								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_THRUSTDAMAGE)] = intValue;
+								it.abilities.absorb.resistances[CombatTypeToIndex(COMBAT_PIERCEDAMAGE)] = intValue;
 							}
 						}
 						else if(asLowerCaseString(strValue) == "suppressdrunk"){

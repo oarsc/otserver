@@ -44,6 +44,6 @@
 		<item id="2463" chance="1000"/><!-- 1% plate armor -->
 		<item id="2200" chance="1000"/><!-- 1% protection amulet -->
 		<item id="2166" chance="500"/><!-- 0.5% power ring -->
-		<item id="2209" chance="200"/><!-- 0.2% bash ring -->
+		<item id="2209" chance="200"/><!-- 0.2% strike ring -->
 	</loot>
 </monster>

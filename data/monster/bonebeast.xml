@@ -38,7 +38,7 @@
 	<elements>
 		<element deathPercent="100"/>
 		<element earthPercent="100"/>
-		<element physicalPercent="0" bashPercent="-25" slashPercent="25" thrustPercent="25"/>
+		<element physicalPercent="0" strikePercent="-25" slashPercent="25" piercePercent="25"/>
 		<element firePercent="-10"/>
 		<element holyPercent="-20"/>
 	</elements>

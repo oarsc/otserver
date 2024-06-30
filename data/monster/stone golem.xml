@@ -24,7 +24,7 @@
 	</defenses>
 	<elements>
 		<element earthPercent="100"/>
-		<element physicalPercent="22" bashPercent="0" slashPercent="22" thrustPercent="22"/>
+		<element physicalPercent="22" strikePercent="0" slashPercent="22" piercePercent="22"/>
 		<element firePercent="20"/>
 		<element energyPercent="13"/>
 		<element deathPercent="10"/>

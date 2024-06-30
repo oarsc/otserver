@@ -27,7 +27,7 @@
 		<element icePercent="18"/>
 		<element energyPercent="-6"/>
 		<element firePercent="-10"/>
-		<element physicalPercent="-14" bashPercent="-14" slashPercent="-14" thrustPercent="-14"/>
+		<element physicalPercent="-14" strikePercent="-14" slashPercent="-14" piercePercent="-14"/>
 	</elements>
 	<immunities>
 	</immunities>

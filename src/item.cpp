@@ -857,10 +857,10 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 				}
 				s << ")";
 			}
-			if (it.weaponType == WEAPON_THRUST) {
-				s << "." << std::endl << "This is a thrust weapon";
-			} else if (it.weaponType == WEAPON_BASH) {
-				s << "." << std::endl << "This is a bash weapon";
+			if (it.weaponType == WEAPON_PIERCE) {
+				s << "." << std::endl << "This is a pierce weapon";
+			} else if (it.weaponType == WEAPON_STRIKE) {
+				s << "." << std::endl << "This is a strike weapon";
 			} else if (it.weaponType == WEAPON_SLASH) {
 				s << "." << std::endl << "This is a slash weapon";
 			}

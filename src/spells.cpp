@@ -806,8 +806,8 @@ bool Spell::playerSpellCheck(Player* player) const
 
 		if(needWeapon){
 			switch(player->getWeaponType()){
-				case WEAPON_THRUST:
-				case WEAPON_BASH:
+				case WEAPON_PIERCE:
+				case WEAPON_STRIKE:
 				case WEAPON_SLASH:
 					break;
 

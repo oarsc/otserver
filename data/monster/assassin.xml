@@ -34,7 +34,7 @@
 		<defense name="haste_assassin" chance="9"/>
 	</defenses>
 	<elements>
-		<element physicalPercent="-12" bashPercent="-12" slashPercent="-12" thrustPercent="-12"/>
+		<element physicalPercent="-12" strikePercent="-12" slashPercent="-12" piercePercent="-12"/>
 		<element deathPercent="-5"/>
 	</elements>
 	<immunities>

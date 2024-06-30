@@ -91,8 +91,8 @@ bool Weapons::loadDefaults()
 		if(it->weaponType != WEAPON_NONE){
 			switch(it->weaponType){
 				case WEAPON_SLASH:
-				case WEAPON_THRUST:
-				case WEAPON_BASH:
+				case WEAPON_PIERCE:
+				case WEAPON_STRIKE:
 				{
 					WeaponMelee* weapon = new WeaponMelee(&m_scriptInterface);
 					weapon->configureWeapon(*it);
@@ -619,8 +619,8 @@ bool WeaponMelee::configureWeapon(const ItemType& it)
 
 	if (it.damageType == COMBAT_NONE) {
 		switch(it.weaponType){
-			case WEAPON_THRUST: params.combatType = COMBAT_THRUSTDAMAGE;   break;
-			case WEAPON_BASH:   params.combatType = COMBAT_BASHDAMAGE;     break;
+			case WEAPON_PIERCE: params.combatType = COMBAT_PIERCEDAMAGE;   break;
+			case WEAPON_STRIKE:   params.combatType = COMBAT_STRIKEDAMAGE;     break;
 			case WEAPON_SLASH:  params.combatType = COMBAT_SLASHDAMAGE;    break;
 			default:            params.combatType = COMBAT_PHYSICALDAMAGE; break;
 		}
@@ -688,16 +688,16 @@ bool WeaponMelee::getSkillType(const Player* player, const Item* item,
 	WeaponType_t weaponType = item->getWeaponType();
 
 	switch(weaponType){
-		case WEAPON_THRUST:
+		case WEAPON_PIERCE:
 		{
-			skill = SKILL_THRUST;
+			skill = SKILL_PIERCE;
 			return true;
 			break;
 		}
 
-		case WEAPON_BASH:
+		case WEAPON_STRIKE:
 		{
-			skill = SKILL_BASH;
+			skill = SKILL_STRIKE;
 			return true;
 			break;
 		}

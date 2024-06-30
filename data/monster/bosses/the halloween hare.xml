@@ -49,7 +49,7 @@
 		</defense>
 	</defenses>
 	<elements>
-		<element physicalPercent="100" bashPercent="100" slashPercent="100" thrustPercent="100"/>
+		<element physicalPercent="100" strikePercent="100" slashPercent="100" piercePercent="100"/>
 		<element deathPercent="100"/>
 		<element earthPercent="100"/>
 		<element energyPercent="100"/>

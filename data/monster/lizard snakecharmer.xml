@@ -40,7 +40,7 @@
 		<element earthPercent="100"/>
 		<element energyPercent="20"/>
 		<element icePercent="10"/>
-		<element physicalPercent="-16" bashPercent="-16" slashPercent="-16" thrustPercent="-16"/>
+		<element physicalPercent="-16" strikePercent="-16" slashPercent="-16" piercePercent="-16"/>
 		<element firePercent="-10"/>
 	</elements>
 	<immunities>

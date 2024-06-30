@@ -31,7 +31,7 @@
 		<element holyPercent="30"/>
 		<element firePercent="30"/>
 		<element energyPercent="10"/>
-		<element physicalPercent="10" bashPercent="10" slashPercent="10" thrustPercent="10"/>
+		<element physicalPercent="10" strikePercent="10" slashPercent="10" piercePercent="10"/>
 		<element icePercent="-10"/>
 		<element deathPercent="-5"/>
 	</elements>

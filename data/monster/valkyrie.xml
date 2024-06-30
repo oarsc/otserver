@@ -30,7 +30,7 @@
 		<element firePercent="10"/>
 		<element holyPercent="7"/>
 		<element deathPercent="-7"/>
-		<element physicalPercent="-6" bashPercent="-6" slashPercent="-6" thrustPercent="-6"/>
+		<element physicalPercent="-6" strikePercent="-6" slashPercent="-6" piercePercent="-6"/>
 	</elements>
 	<immunities>
 	</immunities>

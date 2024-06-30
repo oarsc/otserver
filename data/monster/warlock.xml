@@ -55,7 +55,7 @@
 		<element icePercent="100"/>
 		<element earthPercent="90"/>
 		<element holyPercent="-25"/>
-		<element physicalPercent="-33" bashPercent="-33" slashPercent="-33" thrustPercent="-33"/>
+		<element physicalPercent="-33" strikePercent="-33" slashPercent="-33" piercePercent="-33"/>
 	</elements>
 	<immunities>
 		<immunity paralyze="1"/>

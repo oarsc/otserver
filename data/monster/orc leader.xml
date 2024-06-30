@@ -53,6 +53,6 @@
 		<item id="2419" chance="12000"/><!-- 12% scimitar -->
 		<item id="2379" chance="23000"/><!-- 23% dagger -->
 		<item id="2510" chance="10000"/><!-- 10% plate shield -->
-		<item id="2207" chance="4000"/><!-- 4% thrust ring -->
+		<item id="2207" chance="4000"/><!-- 4% pierce ring -->
 	</loot>
 </monster>

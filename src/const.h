@@ -223,9 +223,9 @@ enum Icons_t{
 
 enum WeaponType_t {
 	WEAPON_NONE     = 0,
-	WEAPON_THRUST    = 1,
-	WEAPON_BASH     = 2,
-	WEAPON_SLASH      = 3,
+	WEAPON_PIERCE   = 1,
+	WEAPON_STRIKE   = 2,
+	WEAPON_SLASH    = 3,
 	WEAPON_SHIELD   = 4,
 	WEAPON_DIST     = 5,
 	WEAPON_WAND     = 6,

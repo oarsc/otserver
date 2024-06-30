@@ -23,10 +23,10 @@
 	<defenses armor="20" defense="36">
 	</defenses>
 	<elements>
-		<element physicalPercent="15" bashPercent="15" slashPercent="15" thrustPercent="15"/>
-		<element bashPercent="15"/>
+		<element physicalPercent="15" strikePercent="15" slashPercent="15" piercePercent="15"/>
+		<element strikePercent="15"/>
 		<element slashPercent="15"/>
-		<element thrustPercent="15"/>
+		<element piercePercent="15"/>
 		<element icePercent="20"/>
 		<element firePercent="20"/>
 		<element energyPercent="-10"/>

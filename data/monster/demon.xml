@@ -41,7 +41,7 @@
 	</summons>
 	<elements>
 		<element firePercent="100"/>
-		<element physicalPercent="25" bashPercent="25" slashPercent="25" thrustPercent="25"/>
+		<element physicalPercent="25" strikePercent="25" slashPercent="25" piercePercent="25"/>
 		<element earthPercent="20"/>
 		<element energyPercent="20"/>
 		<element deathPercent="20"/>

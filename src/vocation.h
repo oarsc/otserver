@@ -54,12 +54,12 @@ public:
 
 	float getMeleeBaseDamage(WeaponType_t weaponType) const
 	{
-		if(weaponType == WEAPON_THRUST)
-			return thrustBaseDamage;
+		if(weaponType == WEAPON_PIERCE)
+			return pierceBaseDamage;
 		else if(weaponType == WEAPON_SLASH)
 			return slashBaseDamage;
-		else if(weaponType == WEAPON_BASH)
-			return bashBaseDamage;
+		else if(weaponType == WEAPON_STRIKE)
+			return strikeBaseDamage;
 		else if(weaponType == WEAPON_DIST)
 			return distBaseDamage;
 		else
@@ -98,9 +98,9 @@ protected:
 	float manaMultiplier;
 	uint32_t attackSpeed;
 
-	float thrustBaseDamage;
+	float pierceBaseDamage;
 	float slashBaseDamage;
-	float bashBaseDamage;
+	float strikeBaseDamage;
 	float distBaseDamage;
 	float fistBaseDamage;
 	float magicBaseDamage;
