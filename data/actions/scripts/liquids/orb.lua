@@ -5,7 +5,7 @@ setCombatParam(healthCombat, COMBAT_PARAM_AGGRESSIVE, false)
 setCombatParam(healthCombat, COMBAT_PARAM_DISPEL, CONDITION_PARALYZE)
 
 function onGetLifeFluidFormulaValues(cid, level, maglevel)
-	return 90, 200
+	return 180, 275
 end
 
 setCombatCallback(healthCombat, CALLBACK_PARAM_LEVELMAGICVALUE, "onGetLifeFluidFormulaValues")
@@ -19,7 +19,7 @@ function onUse(cid, item, fromPosition, itemEx, toPosition)
 		end
 
 	elseif item.itemid == 5099 then
-		if not doPlayerAddMana(cid, math.random(90, 200)) then
+		if not doPlayerAddMana(cid, math.random(180, 275)) then
 			return false
 		end
 		doSendMagicEffect(toPosition, CONST_ME_MAGIC_BLUE)
