@@ -68,6 +68,7 @@ Creature::Creature() :
 	lastStepDuration = 1;
 	baseSpeed = 220;
 	varSpeed = 0;
+	varCardSpeed = 0;
 
 	masterRadius = -1;
 	masterPos.x = 0;

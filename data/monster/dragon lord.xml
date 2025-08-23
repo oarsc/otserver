@@ -61,10 +61,11 @@
 		<item id="1976" chance="9000"/><!-- 9% gemmed book -->
 		<item id="2033" chance="3000"/><!-- 3% golden mug -->
 		<item id="2479" chance="400"/><!-- 0.4% strange helmet -->
-		<item id="2492" chance="100"/><!-- 0.1% dragon scale mail -->
-		<item id="2498" chance="200"/><!-- 0.2% royal helmet -->
-		<item id="2392" chance="300"/><!-- 0.3% fire sword -->
-		<item id="2528" chance="300"/><!-- 0.3% tower shield -->
+		<item id="2492" slots="3" chance="100"/><!-- 0.1% dragon scale mail -->
+		<item id="2498" slots="2" chance="200"/><!-- 0.2% royal helmet -->
+		<item id="2392" slots="3" chance="300"/><!-- 0.3% fire sword -->
+		<item id="2528" slots="3" chance="300"/><!-- 0.3% tower shield -->
 		<item id="2167" chance="5000"/><!-- 5% energy ring -->
+		<item card="3" chance="50"/><!-- 0.05% card -->
 	</loot>
 </monster>

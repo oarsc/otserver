@@ -11795,6 +11795,10 @@
 		<attribute key="decayTo" value="0"/>
 		<attribute key="duration" value="1"/>
 	</item>
+	<item id="5109" article="a" name="card">
+		<attribute key="type" value="card"/>
+		<attribute key="weight" value="20"/>
+	</item>
 	
 	<item id="20001" name="water" fluidClient="1"/>
 	<item id="20002" name="blood" fluidClient="2"/>

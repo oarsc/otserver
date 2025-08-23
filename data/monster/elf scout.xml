@@ -50,5 +50,6 @@
 		<item id="2484" chance="12000"/><!-- 12% studded armor -->
 		<item id="2456" chance="30000"/><!-- 30% bow -->
 		<item id="2397" chance="6000"/><!-- 6% longsword -->
+		<item card="5" chance="50"/><!-- 0.05% card -->
 	</loot>
 </monster>

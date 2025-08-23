@@ -2,7 +2,7 @@
 
 Create the docker image by using the Dockerfile with:
 ```sh
-docker build -t otsi .
+docker buildx build -t otsi .
 ```
 
 ## Creating a container from the image

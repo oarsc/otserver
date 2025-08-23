@@ -124,7 +124,7 @@ void NetworkMessage::addItem(uint16_t id, uint16_t count, uint8_t rank)
 
 void NetworkMessage::addItem(const Item* item)
 {
-	addItem(item->getID(), item->getSubType(), item->getRank());
+	addItem(item->getID(), item->getSubType(), item->getRank()); // TODO: send card slots....
 }
 
 void NetworkMessage::addItemId(const Item *item){

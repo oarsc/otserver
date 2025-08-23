@@ -41,6 +41,7 @@
 
 #include "monsters.h"
 #include "npc.h"
+#include "r/cards.h"
 #include "vocation.h"
 #include "scriptmanager.h"
 #include "configmanager.h"
@@ -63,6 +64,7 @@
 #endif
 
 Game g_game;
+Cards g_cards;
 Dispatcher g_dispatcher;
 Scheduler g_scheduler;
 RSA g_RSA;
@@ -534,6 +536,18 @@ void mainLoader(const CommandLineOptions& command_opts, ServiceManager* service_
 	filename << g_config.getString(ConfigManager::DATA_DIRECTORY) << "items/items.xml";
 	std::cout << ":: Loading " << filename.str() << "... " << std::flush;
 	if(!Item::items.loadFromXml(g_config.getString(ConfigManager::DATA_DIRECTORY))){
+		std::stringstream errormsg;
+		errormsg << "Unable to load " << filename.str() << "!";
+		ErrorMessage(errormsg.str().c_str());
+		exit(-1);
+	}
+	std::cout << "[done]" << std::endl;
+
+	// load card data
+	filename.str("");
+	filename << g_config.getString(ConfigManager::DATA_DIRECTORY) << "items/cards.xml";
+	std::cout << ":: Loading " << filename.str() << "... " << std::flush;
+	if(!g_cards.loadFromXml(g_config.getString(ConfigManager::DATA_DIRECTORY))){
 		std::stringstream errormsg;
 		errormsg << "Unable to load " << filename.str() << "!";
 		ErrorMessage(errormsg.str().c_str());

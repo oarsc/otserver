@@ -57,6 +57,7 @@ enum ItemTypes_t {
 	ITEM_TYPE_BED,
 	ITEM_TYPE_KEY,
 	ITEM_TYPE_RUNE,
+	ITEM_TYPE_CARD,
 	ITEM_TYPE_LAST
 };
 
@@ -300,8 +301,6 @@ private:
 	A* m_data;
 	uint32_t m_size;
 };
-
-
 
 class Items{
 public:

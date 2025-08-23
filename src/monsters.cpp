@@ -28,10 +28,12 @@
 #include "luascript.h"
 #include "weapons.h"
 #include "configmanager.h"
+#include "r/cards.h"
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 
 extern Spells* g_spells;
+extern Cards g_cards;
 extern Monsters g_monsters;
 extern ConfigManager g_config;
 
@@ -212,6 +214,14 @@ std::list<Item*> MonsterType::createLootItem(const LootBlock& lootBlock)
 
 			if(lootBlock.text != ""){
 				tmpItem->setText(lootBlock.text);
+			}
+
+			if (lootBlock.maxCardSlots > 0) {
+				tmpItem->setMaxCardSlots(lootBlock.maxCardSlots);
+			}
+
+			if (tmpItem->isCard() && lootBlock.cardId > 0) {
+				tmpItem->setCardId(lootBlock.cardId);
 			}
 
 			tmpItem->assignRank();
@@ -1599,6 +1609,15 @@ bool Monsters::loadLootItem(xmlNodePtr node, LootBlock& lootBlock)
 		lootBlock.id = intValue;
 	}
 
+	if (readXMLInteger(node, "card", intValue) && intValue > 0) {
+		lootBlock.cardId = (uint32_t)intValue;
+		if (const Card* card = g_cards.getCardById(intValue)) {
+			lootBlock.id = card->itemId;
+		} else {
+			return false;
+		}
+	}
+
 	if(lootBlock.id == 0){
 		return false;
 	}
@@ -1608,6 +1627,10 @@ bool Monsters::loadLootItem(xmlNodePtr node, LootBlock& lootBlock)
 	}
 	else{
 		lootBlock.countmax = 1;
+	}
+
+	if(readXMLInteger(node, "slots", intValue) && intValue > 0){
+		lootBlock.maxCardSlots = (uint8_t)intValue;
 	}
 
 	if(readXMLInteger(node, "chance", intValue) || readXMLInteger(node, "chance1", intValue)){

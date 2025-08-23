@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cards>
+	<card id="999" article="a" name="test card" itemId="5109">
+		<description value="This is a test debug card."/>
+		<attachment value="boots"/>
+		<effects>
+			<!-- <attackModify percent="false" value="200" type="ice"/> -->
+			<!-- <attackModify type="ice"/> -->
+			<!-- <attackModify percent="true" value="-100"/> -->
+
+			<!-- <damage percent="true" value="100" type="pierce"/> -->
+			<!-- <damage percent="true" value="95" type="ice"/> -->
+			<!-- <damage percent="false" value="500" type="ice" chance="30"/> -->
+			<!-- <damage type="fire"/> -->
+			<!-- <damage percent="false" value="20" type="fire"/> -->
+
+			<!-- <steal type="health" value="100"/> -->
+
+			<!-- <absorb percent="false" value="10" type="physical"/> -->
+			<!-- <absorb percent="true" value="100" type="fire"/> -->
+
+			<!-- <add armor="20"/> -->
+			<!-- <add attack="20"/> -->
+			<add skill="distance" percent="false" value="1"/>
+			<add speed="1"/>
+
+			<noAmmo chance="10" itemIds="2547,2543,5092"/>
+		</effects>
+	</card>
+	<card id="1" article="a" name="dragon card" itemId="5109">
+		<description value="A shield protects 10% of fire damage."/>
+		<attachment value="shield"/>
+		<effects>
+			<absorb percent="true" value="10" type="fire"/>
+		</effects>
+	</card>
+	<card id="2" article="a" name="desert dragon card" itemId="5109">
+		<description value="A weapon deals 10% of fire damage."/>
+		<attachment value="weapon"/>
+		<effects>
+			<damage percent="true" value="10" type="fire" blocked="-1"/>
+		</effects>
+	</card>
+	<card id="3" article="a" name="dragon lord card" itemId="5109">
+		<description value="A shield protects 20% of fire damage."/>
+		<attachment value="shield"/>
+		<effects>
+			<absorb percent="true" value="20" type="fire"/>
+		</effects>
+	</card>
+	<card id="4" article="a" name="hunter card" itemId="5109">
+		<description value="A 25% chance not to consume bolts ammunition type."/>
+		<attachment value="distance"/>
+		<effects>
+			<noAmmo chance="100" itemIds="2547,2543"/>
+		</effects>
+	</card>
+	<card id="5" article="an" name="elf scout card" itemId="5109">
+		<description value="A 25% chance not to consume arrows ammunition type. 10% for burst arrows."/>
+		<attachment value="distance"/>
+		<effects>
+			<noAmmo chance="25" itemIds="2546,2545"/>
+			<noAmmo chance="10" itemIds="2544"/>
+		</effects>
+	</card>
+</cards>

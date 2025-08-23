@@ -26,6 +26,7 @@
 #include "npc.h"
 #include "game.h"
 #include "item.h"
+#include "r/cards.h"
 #include "container.h"
 #include "combat.h"
 #include "house.h"
@@ -34,11 +35,13 @@
 #include "spells.h"
 #include "configmanager.h"
 #include "beds.h"
+#include <iostream>
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <sstream>
 
 extern Game g_game;
+extern Cards g_cards;
 extern Spells* g_spells;
 extern Actions* g_actions;
 extern ConfigManager g_config;
@@ -422,6 +425,115 @@ ReturnValue Actions::internalUseItemEx(Player* player, const PositionEx& fromPos
 {
 	isSuccess = false;
 	bool foundAction = false;
+
+	//check if it is a card
+	if (item->isCard()) {
+		const Card* card = g_cards.getCardById(item->getCardId());
+		if (!card) {
+			std::cout << "item si not a card" << std::endl;
+			return RET_CANNOTUSETHISOBJECT;
+		}
+
+		Item* itemEx = g_game.internalGetThing(player, toPosEx, toPosEx.stackpos)->getItem();
+		if (!itemEx) {
+			// target is not an item
+			std::cout << "target is not an item" << std::endl;
+			return RET_CANNOTUSETHISOBJECT;
+		}
+
+		if (!itemEx->getMaxCardSlots()) {
+			// Item cannot hold cards
+			std::cout << "Item cannot hold cards" << std::endl;
+			return RET_CANNOTUSETHISOBJECT;
+		}
+
+		const int cardsInItem = itemEx->getCardsInSlot().size();
+		if (cardsInItem >= itemEx->getMaxCardSlots()) {
+			// Item has no free slots
+			std::cout << "Item has no free slots" << std::endl;
+			return RET_CANNOTUSETHISOBJECT;
+		}
+		
+		const WeaponType_t weaponType = itemEx->getWeaponType();
+		const int wieldPosition = itemEx->getWieldPosition();
+
+		switch (card->attachment) {
+			case CARD_ATTACHMENT_WEAPON:
+				if (weaponType != WEAPON_SLASH && weaponType != WEAPON_STRIKE && weaponType != WEAPON_PIERCE && weaponType != WEAPON_DIST) {
+					// card is not weapon
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_MELEE:
+				if (weaponType != WEAPON_SLASH && weaponType != WEAPON_STRIKE && weaponType != WEAPON_PIERCE) {
+					// card is not a melee weapon
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_DISTANCE:
+				if (weaponType != WEAPON_DIST) {
+					// card is not distance weapon
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_WAND:
+				if (weaponType != WEAPON_WAND) {
+					// card is not a wand
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_SHIELD:
+				if (weaponType != WEAPON_SHIELD) {
+					// card is not shield
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_ANY_ARMOR:
+				if (wieldPosition != SLOT_HEAD && wieldPosition != SLOT_ARMOR && wieldPosition != SLOT_LEGS && wieldPosition != SLOT_FEET) {
+					// card is not a piece of armor
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+				break;
+			case CARD_ATTACHMENT_HELMET:
+				if (wieldPosition != SLOT_HEAD) {
+					// card is not helmet
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_CHEST:
+				if (wieldPosition != SLOT_ARMOR) {
+					// card is not armor
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_LEGS:
+				if (wieldPosition != SLOT_LEGS) {
+					// card is not legs
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_BOOTS:
+				if (wieldPosition != SLOT_FEET) {
+					// card is not boots
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_RING:
+				if (wieldPosition != SLOT_RING) {
+					// card is not ring
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			case CARD_ATTACHMENT_NECKLACE:
+				if (wieldPosition != SLOT_NECKLACE) {
+					// card is not necklace
+					return RET_CANNOTUSETHISOBJECT;
+				}
+				break;
+			default: break;
+		}
+	}
 
 	Action* action = getAction(item, ACTION_UNIQUEID);
 	if(action){

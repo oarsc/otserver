@@ -27,10 +27,10 @@
 class Attack {
 public:
     static void playerAutoattack(
-        Player* player, 
-        Creature* target, 
-        const Weapon* weapon, 
-        int32_t damage, 
+        Player* player,
+        Creature* target,
+        const Weapon* weapon,
+        int32_t damage,
         const CombatParams& params
     );
 
@@ -38,15 +38,6 @@ public:
         Monster* monster, 
         Creature* target, 
         Combat* combat
-    );
-
-    static void performAttack(
-        Creature* attacker, 
-        Creature* target, 
-        int32_t damage, 
-        const CombatParams& params, 
-        const std::function<void(void)>& callback = nullptr, 
-        const std::function<bool(int32_t&)>& confirmation = nullptr
     );
 
     static bool performCombatScript(
@@ -58,6 +49,14 @@ public:
     );
 
 private:
+    static void performAttack(
+        Creature* attacker, 
+        Creature* target, 
+        CombatParams& params, 
+        const std::function<void(void)>& callback = nullptr, 
+        const std::function<bool(CombatParams&)>& confirmation = nullptr
+    );
+
     static void attack(
         Creature* attacker, 
         Creature* target, 

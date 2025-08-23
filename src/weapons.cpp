@@ -22,6 +22,7 @@
 #include "weapons.h"
 #include "combat.h"
 #include "r/attack.h"
+#include "r/cards.h"
 #include "tools.h"
 #include "configmanager.h"
 #include <libxml/xmlmemory.h>
@@ -29,6 +30,7 @@
 #include <sstream>
 
 extern Game g_game;
+extern Cards g_cards;
 extern Vocations g_vocations;
 extern ConfigManager g_config;
 extern Weapons* g_weapons;
@@ -524,18 +526,22 @@ void Weapon::onUsedWeapon(Player* player, Item* item, Tile* destTile) const
 
 void Weapon::onUsedAmmo(Player* player, Item* item, Tile* destTile) const
 {
-	if(ammoAction == AMMOACTION_REMOVECOUNT){
-		int32_t newCount = std::max(0, item->getItemCount() - 1);
-		g_game.transformItem(item, item->getID(), newCount);
+	if(ammoAction == AMMOACTION_REMOVECOUNT) {
+		if (g_cards.shouldConsumeAmmoFromCards(player, item)) {
+			int32_t newCount = std::max(0, item->getItemCount() - 1);
+			g_game.transformItem(item, item->getID(), newCount);
+		}
 	}
 	else if(ammoAction == AMMOACTION_REMOVECHARGE){
 		int32_t newCharge = std::max((int32_t)0, ((int32_t)item->getCharges()) - 1);
 		g_game.transformItem(item, item->getID(), newCharge);
 	}
-	else if(ammoAction == AMMOACTION_MOVE){
-		uint32_t distance = std::max(std::abs(player->getPosition().x - destTile->getPosition().x), std::abs(player->getPosition().y - destTile->getPosition().y));
-		if (distance > 1) {
-			g_game.internalMoveItem(item->getParent(), destTile, INDEX_WHEREEVER, item, 1, NULL, FLAG_NOLIMIT);
+	else if(ammoAction == AMMOACTION_MOVE) {
+		if (g_cards.shouldConsumeAmmoFromCards(player, item)) {
+			uint32_t distance = std::max(std::abs(player->getPosition().x - destTile->getPosition().x), std::abs(player->getPosition().y - destTile->getPosition().y));
+			if (distance > 1) {
+				g_game.internalMoveItem(item->getParent(), destTile, INDEX_WHEREEVER, item, 1, NULL, FLAG_NOLIMIT);
+			}
 		}
 	}
 	else if(ammoAction == AMMOACTION_MOVEBACK){
@@ -733,7 +739,7 @@ int32_t WeaponMelee::getElementDamage(const Player* player, const Item* item) co
 int32_t WeaponMelee::getWeaponDamage(const Player* player, const Creature* target, const Item* item, bool maxDamage /*= false*/) const
 {
 	int32_t attackSkill = player->getWeaponSkill(item);
-	int32_t attackValue = std::max(0, item->getAttack() + item->getRank());
+	int32_t attackValue = std::max(0, item->getAttack() + item->getRank() + g_cards.getExtraPropertyValueFromCards(item));
 	float attackFactor = player->getAttackFactor();
 	int32_t maxValue = Weapons::getMaxWeaponDamage(player->getLevel(), attackSkill, attackValue, attackFactor);
 
@@ -961,7 +967,7 @@ int32_t WeaponDistance::getWeaponDamage(const Player* player, const Creature* ta
 	if(item->getWeaponType() == WEAPON_AMMO){
 		Item* bow = const_cast<Player*>(player)->getWeapon(true);
 		if(bow){
-			attackValue += bow->getAttack() + bow->getRank();
+			attackValue += bow->getAttack() + bow->getRank() + g_cards.getExtraPropertyValueFromCards(bow);
 		}
 	}
 

@@ -19,31 +19,32 @@
 //////////////////////////////////////////////////////////////////////
 #include "otpch.h"
 
-#include "game.h"
-#include "otsystem.h"
-#include "tasks.h"
-#include "items.h"
-#include "creature.h"
-#include "globalevent.h"
-#include "player.h"
-#include "monster.h"
-#include "tile.h"
-#include "house.h"
 #include "actions.h"
-#include "combat.h"
-#include "ioplayer.h"
-#include "ioaccount.h"
-#include "chat.h"
-#include "talkaction.h"
-#include "spells.h"
-#include "configmanager.h"
-#include "server.h"
-#include "party.h"
 #include "ban.h"
-#include "raids.h"
-#include "spawn.h"
-#include "movement.h"
+#include "chat.h"
+#include "combat.h"
+#include "configmanager.h"
+#include "creature.h"
+#include "game.h"
+#include "globalevent.h"
 #include "guild.h"
+#include "house.h"
+#include "ioaccount.h"
+#include "ioplayer.h"
+#include "items.h"
+#include "monster.h"
+#include "movement.h"
+#include "otsystem.h"
+#include "party.h"
+#include "player.h"
+#include "raids.h"
+#include "server.h"
+#include "spawn.h"
+#include "spells.h"
+#include "talkaction.h"
+#include "tasks.h"
+#include "tile.h"
+#include "r/cards.h"
 #include <boost/config.hpp>
 #include <string>
 #include <sstream>
@@ -54,6 +55,7 @@ extern ConfigManager g_config;
 extern Actions* g_actions;
 extern BanManager g_bans;
 extern Chat g_chat;
+extern Cards g_cards;
 extern TalkActions* g_talkactions;
 extern Spells* g_spells;
 extern Monsters g_monsters;
@@ -3939,7 +3941,7 @@ void Game::checkCreatures()
 
 void Game::changeSpeed(Creature* creature, int32_t varSpeedDelta)
 {
-	int32_t varSpeed = creature->getSpeed() - creature->getBaseSpeed();
+	int32_t varSpeed = creature->getSpeed() - creature->getBaseSpeed() - creature->getCardSpeed();
 	varSpeed += varSpeedDelta;
 
 	creature->setSpeed(varSpeed);
@@ -4048,6 +4050,10 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 		return true;
 	}
 
+	if (const Player* player = target->getPlayer()) {
+		g_cards.applyReceiveDamageFromCards(player, combatType, healthChange);
+	}
+
 	int32_t damage = -healthChange;
 	BlockType_t blockType = target->blockHit(attacker, combatType, damage, checkDefense, checkArmor);
 	healthChange = -damage;
@@ -4068,6 +4074,105 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 		uint8_t hitEffect = 0;
 
 		switch(combatType){
+			case COMBAT_UNDEFINEDDAMAGE:
+				break;
+
+			case COMBAT_ENERGYDAMAGE:
+			case COMBAT_FIREDAMAGE:
+			case COMBAT_ICEDAMAGE:
+			case COMBAT_DEATHDAMAGE:
+			case COMBAT_HOLYDAMAGE:
+			case COMBAT_PHYSICALDAMAGE:
+			case COMBAT_STRIKEDAMAGE:
+			case COMBAT_SLASHDAMAGE:
+			case COMBAT_PIERCEDAMAGE:
+			case COMBAT_EARTHDAMAGE:
+			{
+				hitEffect = NM_ME_BLOCKHIT;
+				break;
+			}
+
+			case COMBAT_POISONDAMAGE:
+			{
+				hitEffect = NM_ME_POISON_RINGS;
+				break;
+			}
+
+			default:
+				hitEffect = NM_ME_PUFF;
+				break;
+		}
+
+		addMagicEffect(list, targetPos, hitEffect);
+
+		return true;
+	}
+
+	return false;
+}
+
+bool Game::combatBlockHit(CombatParams& params, Creature* attacker, Creature* target)
+{
+	if(target->getPlayer() && target->getPlayer()->hasSomeInvisibilityFlag()){
+		return true;
+	}
+
+	if(params.damage > 0){
+		return false;
+	}
+
+	const Position& targetPos = target->getPosition();
+
+	const SpectatorVec& list = getSpectators(targetPos);
+
+	if(!target->isAttackable() || Combat::canDoCombat(attacker, target) != RET_NOERROR){
+		addMagicEffect(list, targetPos, NM_ME_PUFF);
+		return true;
+	}
+
+	if (const Player* player = target->getPlayer()) {
+		g_cards.applyReceiveDamageFromCards(player, params);
+	}
+
+	int32_t mainDamage = -params.damage;
+	BlockType_t blockType = target->blockHit(attacker, params.combatType, mainDamage, params.blockedByShield, params.blockedByArmor);
+	params.damage = -mainDamage;
+	int32_t damage = mainDamage;
+	int32_t maxDamage = mainDamage;
+
+	for (ExtraCombatParams &extra : params.extras) {
+		int32_t extraDamage = -extra.damage;
+		BlockType_t extraBlockType = target->blockHit(attacker, extra.combatType, extraDamage, extra.blockedByShield, extra.blockedByArmor);
+		extra.damage = -extraDamage;
+
+		if (blockType != BLOCK_NONE) {
+			blockType = extraBlockType < blockType ? extraBlockType : blockType;
+		}
+
+		if (extraDamage > maxDamage) {
+			params.combatType = extra.combatType;
+			maxDamage = extraDamage;
+		}
+
+		damage += extraDamage;
+	}
+
+	for(SpectatorVec::const_iterator it = list.begin(); it != list.end(); ++it){
+		(*it)->onWitnessAttack(attacker, target, params.combatType, blockType, damage);
+	}
+
+	if(blockType == BLOCK_DEFENSE){
+		addMagicEffect(list, targetPos, NM_ME_PUFF);
+		return true;
+	}
+	else if(blockType == BLOCK_ARMOR){
+		addMagicEffect(list, targetPos, NM_ME_BLOCKHIT);
+		return true;
+	}
+	else if(blockType == BLOCK_IMMUNITY){
+		uint8_t hitEffect = 0;
+
+		switch(params.combatType){
 			case COMBAT_UNDEFINEDDAMAGE:
 				break;
 
