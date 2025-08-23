@@ -48,5 +48,6 @@
 		<item id="2050" chance="5000"/><!-- 5% torch -->
 		<item id="2456" chance="45000"/><!-- 45% bow -->
 		<item id="2201" chance="3000"/><!-- 3% dragon necklace -->
+		<item card="4" chance="50"/><!-- 0.05% card -->
 	</loot>
 </monster>

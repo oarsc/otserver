@@ -30,6 +30,7 @@
 #include "spawn.h"
 #include "templates.h"
 #include "enums.h"
+#include "combat.h"
 #include "scheduler.h"
 #include <queue>
 #include <vector>
@@ -509,6 +510,7 @@ public:
 
 	bool combatBlockHit(CombatType_t combatType, Creature* attacker, Creature* target,
 		int32_t& healthChange, bool checkDefense, bool checkArmor);
+	bool combatBlockHit(CombatParams& params, Creature* attacker, Creature* target);
 
 	bool combatChangeHealth(CombatType_t combatType, Creature* attacker, Creature* target, int32_t healthChange);
 	bool combatChangeHealth(CombatType_t combatType, MagicEffectClasses hitEffect, TextColor_t customTextColor, Creature* attacker, Creature* target, int32_t healthChange);

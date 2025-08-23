@@ -4,18 +4,28 @@ function isBreakingTool(item)
 end
 
 function onUse(cid, item, fromPosition, itemEx, toPosition)
-	if BREAKABLE_BY_WEAPONS[itemEx.itemid] ~= nil and isBreakingTool(item) then
-		local chance = BREAKABLE_BY_WEAPONS[itemEx.itemid].chance or 20
-		if math.random(100) <= chance then
-			doTransformItem(itemEx.uid, BREAKABLE_BY_WEAPONS[itemEx.itemid].remainings)
-			doDecayItem(itemEx.uid)
-			if itemEx.actionid ~= 0 then
-				doSetItemActionId(itemEx.uid, itemEx.actionid)
+	if isBreakingTool(item) then
+		if BREAKABLE_BY_WEAPONS[itemEx.itemid] ~= nil then
+			local chance = BREAKABLE_BY_WEAPONS[itemEx.itemid].chance or 20
+			if math.random(100) <= chance then
+				doTransformItem(itemEx.uid, BREAKABLE_BY_WEAPONS[itemEx.itemid].remainings)
+				doDecayItem(itemEx.uid)
+				if itemEx.actionid ~= 0 then
+					doSetItemActionId(itemEx.uid, itemEx.actionid)
+				end
 			end
-		end
-		doSendMagicEffect(toPosition, CONST_ME_POFF)
-		return true
-	end
+			doSendMagicEffect(toPosition, CONST_ME_POFF)
+			return true
 
+		elseif itemEx.uid == 0 then
+			if isItemCardStorage(item.uid) then
+				removeCardsFromItem(cid, item.uid)
+				return true
+			end
+		elseif isItemCardStorage(itemEx.uid) then
+			removeCardsFromItem(cid, itemEx.uid)
+			return true
+		end
+	end
 	return false
 end

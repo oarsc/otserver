@@ -52,14 +52,15 @@
 		<item id="2145" chance="400"/><!-- 0.4% small diamond -->
 		<item id="2546" chance="16000" countmax="10"/><!-- 10 16% burst arrow -->
 		<item id="2177" chance="100"/><!-- 0.1% life crystal -->
-		<item id="2456" chance="10000"/><!-- 10% bow -->
+		<item id="2456" slots="3" chance="10000"/><!-- 10% bow -->
 		<item id="2397" chance="4000"/><!-- 4% longsword -->
 		<item id="2413" chance="2000"/><!-- 2% broadsword -->
 		<item id="2387" chance="1000"/><!-- 1% double axe -->
-		<item id="2434" chance="500"/><!-- 0.5% dragon hammer -->
+		<item id="2434" slots="2" chance="500"/><!-- 0.5% dragon hammer -->
 		<item id="2398" chance="20000"/><!-- 20% mace -->
-		<item id="2187" chance="1000"/><!-- 1% wand of inferno -->
-		<item id="2509" chance="15000"/><!-- 15% steel shield -->
-		<item id="2392" chance="300"/><!-- 0.3% fire sword -->
+		<item id="2187" slots="3" chance="1000"/><!-- 1% wand of inferno -->
+		<item id="2509" slots="2" chance="15000"/><!-- 15% steel shield -->
+		<item id="2392" slots="2" chance="300"/><!-- 0.3% fire sword -->
+		<item card="2" chance="50"/><!-- 0.05% card -->
 	</loot>
 </monster>

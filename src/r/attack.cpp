@@ -19,18 +19,20 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "attack.h"
+#include "cards.h"
 #include "../game.h"
 #include "../const.h"
 #include "../tools.h"
 
 extern Game g_game;
+extern Cards g_cards;
 
 void Attack::playerAutoattack(
 	Player* player,
 	Creature* target,
 	const Weapon* weapon,
 	int32_t damage,
-	const CombatParams& params
+	const CombatParams &params
 ) {
 	if (player == target || Combat::canDoCombat(player, target) != RET_NOERROR) return;
 
@@ -43,10 +45,17 @@ void Attack::playerAutoattack(
 			reducedDamage = -random_range(0, -damage, DISTRO_CUSTOM_ATTACK, 0.9, 0);
 		}
 
-		std::cout << "playerAttack(damage=" << damage << ",reducedDamage=" << reducedDamage << ")" << std::endl;
+		CombatParams paramsWithDamage = params;
+		paramsWithDamage.baseDamage = reducedDamage;
+		paramsWithDamage.damage = reducedDamage;
 
-		performAttack(player, target, reducedDamage, params,
-			[=] { player->useActiveSpellAttack(target); });
+		g_cards.applyDoDamageFromCards(player, paramsWithDamage);
+
+		performAttack(player, target, paramsWithDamage,
+			[=] {
+				player->useActiveSpellAttack(target);
+				g_cards.applyPostAttackFromCards(player, paramsWithDamage);
+			});
 
 	} else {
 		std::cout << "Wrong player attack(name=" << player->getName() << ",combatType=" << params.combatType << ")" << std::endl;
@@ -69,9 +78,11 @@ void Attack::monsterAutoattack(
 		combat->getMinMaxValues(monster, target, minChange, maxChange);
 		int32_t damage = random_range(minChange, maxChange);
 
-		std::cout << "monsterAttack(name=" << monster->getName() << ",damage=" << maxChange << ",reducedDamage=" << damage << ")" << std::endl;
+		CombatParams paramsWithDamage = params;
+		paramsWithDamage.baseDamage = damage;
+		paramsWithDamage.damage = damage;
 
-		performAttack(monster, target, damage, params);
+		performAttack(monster, target, paramsWithDamage);
 
 	} else {
 		std::cout << "Wrong monster attack(name=" << monster->getName() << ",combatType=" << params.combatType << ")" << std::endl;
@@ -81,20 +92,25 @@ void Attack::monsterAutoattack(
 void Attack::performAttack(
 	Creature* attacker,
 	Creature* target,
-	int32_t damage,
-	const CombatParams& params,
+	CombatParams& params,
 	const std::function<void(void)>& callback /* = nullptr */,
-	const std::function<bool(int32_t&)>& confirmation /* = nullptr */
+	const std::function<bool(CombatParams&)>& confirmation /* = nullptr */
 ) {
-	if(g_game.combatBlockHit(params.combatType, attacker, target, damage, params.blockedByShield, params.blockedByArmor)){
+	// check card absorbs, blocking, armor and monster resistances
+	if (g_game.combatBlockHit(params, attacker, target)) {
+		if (params.distanceEffect != NM_ME_NONE) {
+			g_game.addDistanceEffect(attacker->getPosition(), target->getPosition(), params.distanceEffect);
+		}
 		return;
 	}
 
-	Combat::checkPVPDamageReduction(attacker, target, damage);
+	Combat::checkPVPDamageReduction(attacker, target, params);
 
-	if (confirmation && !confirmation(damage)) {
+	if (confirmation && !confirmation(params)) {
 		return;
 	}
+
+	int32_t damage = params.damage;
 
 	if (params.distanceEffect == NM_ME_NONE) {
 		attack(attacker, target, damage, params);
@@ -116,9 +132,14 @@ void Attack::attack(
 	int32_t damage,
 	const CombatParams& params
 ) {
-	bool result = g_game.combatChangeHealth(params.combatType, params.hitEffect, params.hitTextColor, attacker, target, damage);
+	int32_t damageSum = params.damage;
+	for (const ExtraCombatParams &extra : params.extras) {
+		damageSum += extra.damage;
+	}
 
-	if(result){
+	bool result = g_game.combatChangeHealth(params.combatType, params.hitEffect, params.hitTextColor, attacker, target, damageSum);
+
+	if (result) {
 		Combat::CombatConditionFunc(attacker, target, params, NULL);
 		Combat::CombatDispelFunc(attacker, target, params, NULL);
 	}

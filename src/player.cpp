@@ -35,6 +35,7 @@
 #include "party.h"
 #include "guild.h"
 #include "town.h"
+#include "r/cards.h"
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -43,6 +44,7 @@
 
 extern ConfigManager g_config;
 extern Game g_game;
+extern Cards g_cards;
 extern BanManager g_bans;
 extern Chat g_chat;
 extern Vocations g_vocations;
@@ -139,12 +141,10 @@ Player::Player(const std::string& _name, ProtocolGame* p) : Creature()
 		skills[i].level = 10;
 		skills[i].tries = 0;
 		skills[i].percent = 0;
+		varSkills[i] = 0;
+		varCardSkills[i] = 0;
 	}
 	removeFrozenSkills = false;
-
-	for(int32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i){
-		varSkills[i] = 0;
-	}
 
 	for(int32_t i = STAT_FIRST; i <= STAT_LAST; ++i){
 		varStats[i] = 0;
@@ -369,6 +369,34 @@ Item* Player::getEquippedItem(slots_t slot) const
 	return NULL;
 }
 
+bool Player::isItemEquipped(Item* item) const
+{
+	if (!item) return false;
+	uint16_t itemId = item->getID();
+
+	for(int32_t i = SLOT_FIRST; i <= SLOT_RING; ++i){
+		Item* slotItem = getInventoryItem((slots_t)i);
+		if (slotItem && slotItem->getID() == itemId) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Player::equippedCardsUpdated()
+{
+	if (g_cards.applyVarSkillsFromCards(this)) {
+		sendSkills();
+	}
+
+	int32_t speed = g_cards.getExtraSpeedFromCards(this);
+	if (speed != getCardSpeed()) {
+		setCardSpeed(speed);
+		g_game.changeSpeed(this, 0);
+	}
+}
+
 Item* Player::getFirstItemById(uint32_t id) const
 {
 	Item* tmpItem = NULL;
@@ -536,7 +564,7 @@ float Player::calcArmor(const Item* item, bool useRank /*= true*/) const
 	if (!item) {
 		return 0;
 	}
-	float armor = item->getArmor();
+	float armor = item->getArmor() + g_cards.getExtraPropertyValueFromCards(item);
 	if (useRank) armor += item->getRank();
 
 	if (armor > 10) {
@@ -585,9 +613,13 @@ int32_t Player::getDefense() const
 		extraDef = weapon->getExtraDef();
 	}
 
-	if(shield && (shield->getDefense() + shield->getRank()) >= defenseValue){
-		defenseValue = shield->getDefense() + extraDef + shield->getRank();
-		defenseSkill = getSkillLevel(SKILL_SHIELD);
+	if (shield) {
+		int32_t shieldDefendValue = shield->getDefense() + shield->getRank() + g_cards.getExtraPropertyValueFromCards(shield);
+
+		if(shieldDefendValue >= defenseValue){
+			defenseValue = shieldDefendValue + extraDef;
+			defenseSkill = getSkillLevel(SKILL_SHIELD);
+		}
 	}
 
 	if(defenseSkill == 0)
@@ -719,8 +751,7 @@ uint64_t Player::getLostExperience() const
 
 uint32_t Player::getSkillLevel(skills_t skilltype) const
 {
-	uint32_t n = skills[skilltype].level + varSkills[skilltype];
-
+	uint32_t n = skills[skilltype].level + varSkills[skilltype] + varCardSkills[skilltype];
 	return std::max((int32_t)0, (int32_t)n);
 }
 
@@ -1592,11 +1623,16 @@ void Player::onCreatureAppear(const Creature* creature, bool isLogin)
 
 	if(isLogin && creature == this){
 		Item* item;
+		bool anyCard = false;
 		for(int slot = SLOT_FIRST; slot < SLOT_LAST; ++slot){
 			if((item = getInventoryItem((slots_t)slot))){
 				item->__startDecaying();
 				g_moveEvents->onPlayerEquip(this, item, (slots_t)slot);
+				anyCard |= item->hasCards();
 			}
+		}
+		if (anyCard) {
+			equippedCardsUpdated();
 		}
 
 		if(!storedConditionList.empty()){
@@ -3746,7 +3782,11 @@ void Player::postAddNotification(Thing* thing, const Cylinder* oldParent, int32_
 {
 	if(link == LINK_OWNER && isNewItem){
 		//calling movement scripts
-		g_moveEvents->onPlayerEquip(this, thing->getItem(), (slots_t)index);
+		Item* item = thing->getItem();
+		g_moveEvents->onPlayerEquip(this, item, (slots_t)index);
+		if (item->hasCards()) {
+			equippedCardsUpdated();
+		}
 	}
 
 	if(link == LINK_OWNER || link == LINK_TOPPARENT){
@@ -3781,7 +3821,11 @@ void Player::postRemoveNotification(Thing* thing, const Cylinder* newParent, int
 {
 	if(link == LINK_OWNER && isCompleteRemoval){
 		//calling movement scripts
-		g_moveEvents->onPlayerDeEquip(this, thing->getItem(), (slots_t)index, isCompleteRemoval);
+		Item* item = thing->getItem();
+		g_moveEvents->onPlayerDeEquip(this, item, (slots_t)index, isCompleteRemoval);
+		if (item->hasCards()) {
+			equippedCardsUpdated();
+		}
 	}
 
 	if(link == LINK_OWNER || link == LINK_TOPPARENT){
@@ -3789,7 +3833,6 @@ void Player::postRemoveNotification(Thing* thing, const Cylinder* newParent, int
 		updateItemsLight();
 		sendStats();
 	}
-
 
 	if(const Item* item = thing->getItem()){
 		if(const Container* container = item->getContainer()){

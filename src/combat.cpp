@@ -28,9 +28,11 @@
 #include "tools.h"
 #include "weapons.h"
 #include "party.h"
+#include "r/cards.h"
 #include <sstream>
 
 extern Game g_game;
+extern Cards g_cards;
 extern ConfigManager g_config;
 extern Weapons* g_weapons;
 
@@ -607,16 +609,37 @@ void Combat::checkPVPDamageReduction(const Creature* attacker, const Creature* t
 	}
 }
 
+void Combat::checkPVPDamageReduction(const Creature* attacker, const Creature* target, CombatParams& params) //static
+{
+	if(attacker && attacker->getPlayer() && target->getPlayer() && (attacker != target)){
+		#ifdef __SKULLSYSTEM__
+		Combat::doPVPDamageReduction(params.damage, target->getPlayer());
+		for (ExtraCombatParams &extra : params.extras) {
+			Combat::doPVPDamageReduction(extra.damage, target->getPlayer());
+		}
+		#else
+		Combat::doPVPDamageReduction(healthChange);
+		#endif
+	}
+}
+
 bool Combat::CombatHealthFunc(Creature* caster, Creature* target, const CombatParams& params, void* data)
 {
 	Combat2Var* var = (Combat2Var*)data;
-	int32_t healthChange = random_range(var->minChange, var->maxChange);
 
-	if(g_game.combatBlockHit(params.combatType, caster, target, healthChange, params.blockedByShield, params.blockedByArmor)){
+	CombatParams editableParams = params;
+	editableParams.damage = editableParams.baseDamage = random_range(var->minChange, var->maxChange);
+
+	if(g_game.combatBlockHit(editableParams, caster, target)){
 		return false;
 	}
 
-	Combat::checkPVPDamageReduction(caster, target, healthChange);
+	Combat::checkPVPDamageReduction(caster, target, editableParams);
+
+	int32_t healthChange = editableParams.damage;
+	for (const ExtraCombatParams &extra : editableParams.extras) {
+		healthChange += extra.damage;
+	}
 
 	bool result = g_game.combatChangeHealth(params.combatType, params.hitEffect, params.hitTextColor, caster, target, healthChange);
 
@@ -1104,12 +1127,12 @@ void ValueCallback::getMinMaxValues(Player* player, int32_t& min, int32_t& max, 
 
 				if (tool) {
 					if (tool->getWeaponType() == WEAPON_DIST && tool->getAmuType() != AMMO_NONE) {
-						attackValue += tool->getAttack() + tool->getRank();
+						attackValue += tool->getAttack() + tool->getRank() + g_cards.getExtraPropertyValueFromCards(tool);
 						tool = player->getWeapon();
 					}
 
 					if(tool){
-						attackValue += tool->getAttack();
+						attackValue += tool->getAttack() + tool->getRank() + g_cards.getExtraPropertyValueFromCards(tool);
 
 						if(useCharges && tool->hasCharges() && g_config.getNumber(ConfigManager::REMOVE_WEAPON_CHARGES)){
 							int32_t newCharge = std::max(0, tool->getCharges() - 1);

@@ -206,7 +206,7 @@ public:
 	virtual int32_t getStepDuration(Direction dir) const;
 	virtual int32_t getStepDuration() const;
 	virtual int32_t getStepSpeed() const {return getSpeed();}
-	int32_t getSpeed() const {return getBaseSpeed() + varSpeed;}
+	int32_t getSpeed() const {return getBaseSpeed() + varSpeed + varCardSpeed;}
 	void setSpeed(int32_t varSpeedDelta)
 	{
 		int32_t oldSpeed = getSpeed();
@@ -219,6 +219,8 @@ public:
 			addEventWalk();
 		}
 	}
+	void setCardSpeed(int32_t speed) { varCardSpeed = speed; }
+	int32_t getCardSpeed() const {return varCardSpeed;}
 
 	void setBaseSpeed(uint32_t newBaseSpeed) {baseSpeed = newBaseSpeed;}
 	uint32_t getBaseSpeed() const {return baseSpeed;}
@@ -456,6 +458,7 @@ protected:
 	int32_t lastStepDuration;
 	uint32_t baseSpeed;
 	int32_t varSpeed;
+	int32_t varCardSpeed;
 	bool skillLoss;
 	bool lootDrop;
 	Direction direction;

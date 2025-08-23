@@ -513,6 +513,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								else if(asLowerCaseString(strValue) == "rune"){
 									it.type = ITEM_TYPE_RUNE;
 								}
+								else if(asLowerCaseString(strValue) == "card"){
+									it.type = ITEM_TYPE_CARD;
+								}
 								else{
 									std::cout << "Warning: [Items::loadFromXml] " << "Unknown type " << strValue  << std::endl;
 								}

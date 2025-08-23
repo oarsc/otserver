@@ -42,11 +42,13 @@
 #include "tools.h"
 #include "guild.h"
 #include "vocation.h"
+#include "r/cards.h"
 #include <string>
 #include <iostream>
 #include <sstream>
 
 extern Game g_game;
+extern Cards g_cards;
 extern Monsters g_monsters;
 extern BanManager g_bans;
 extern ConfigManager g_config;
@@ -1392,6 +1394,12 @@ void LuaScriptInterface::registerFunctions()
 	//getThingPos(uid)
 	lua_register(m_luaState, "getThingPos", LuaScriptInterface::luaGetThingPos);
 
+	//setCardToItem(uid, toUid)
+	lua_register(m_luaState, "setCardToItem", LuaScriptInterface::luaSetCardToItem);
+
+	//removeCardsFromItem(cid, uid)
+	lua_register(m_luaState, "removeCardsFromItem", LuaScriptInterface::luaRemoveCardsFromItem);
+
 	//getTileStackItemsSize(pos)
 	lua_register(m_luaState, "getTileStackItemsSize", LuaScriptInterface::luaGetTileStackItemsSize);
 
@@ -1623,6 +1631,9 @@ void LuaScriptInterface::registerFunctions()
 
 	//isItemTwoHanded(uid)
 	lua_register(m_luaState, "isItemTwoHanded", LuaScriptInterface::luaIsItemTwoHanded);
+
+	//isItemCardStorage(uid)
+	lua_register(m_luaState, "isItemCardStorage", LuaScriptInterface::luaIsItemCardStorage);
 
 	//isContainer(uid)
 	lua_register(m_luaState, "isContainer", LuaScriptInterface::luaIsContainer);
@@ -5658,6 +5669,97 @@ int LuaScriptInterface::luaGetThingPos(lua_State *L)
 	return 1;
 }
 
+int LuaScriptInterface::luaSetCardToItem(lua_State *L)
+{
+	//setCardToItem(uid, toUid)
+	uint32_t toUid = popNumber(L);
+	uint32_t uid = popNumber(L);
+
+	ScriptEnviroment* env = getScriptEnv();
+
+	Thing* cardThing = env->getThingByUID(uid);
+	Thing* thing = env->getThingByUID(toUid);
+
+	if (!cardThing || !thing) {
+		reportErrorFunc(getErrorDesc(LUA_ERROR_THING_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	Item* cardItem = cardThing->getItem();
+	Item* item = thing->getItem();
+
+	if (!cardItem || !item) {
+		reportErrorFunc(getErrorDesc(LUA_ERROR_THING_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	lua_pushboolean(L, item->addCardToEmptySlot(cardItem->getCardId()));
+	return 1;
+}
+
+int LuaScriptInterface::luaRemoveCardsFromItem(lua_State *L)
+{
+	//removeCardsFromItem(cid, uid)
+	uint32_t uid = popNumber(L);
+	uint32_t cid = popNumber(L);
+
+	ScriptEnviroment* env = getScriptEnv();
+
+	Item* item = nullptr;
+	Player* player = nullptr;
+
+	if(cid != 0){
+		Creature* creature = env->getCreatureByUID(cid);
+
+		if(!creature || !(player = creature->getPlayer())){
+			reportErrorFunc(getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
+			lua_pushboolean(L, false);
+			return 1;
+		}
+	}
+
+	if (uid != 0) {
+		Thing* thing = env->getThingByUID(uid);
+
+		if (!thing || !(item = thing->getItem())) {
+			reportErrorFunc(getErrorDesc(LUA_ERROR_THING_NOT_FOUND));
+			lua_pushboolean(L, false);
+			return 1;
+		}
+	}
+
+	std::list<uint32_t> cards = item->getCardsInSlot();
+	if (cards.size() == 0) {
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	item->clearCards();
+	for (uint32_t cardId : cards) {
+		const Card* card = g_cards.getCardById(cardId);
+		if (!card) {
+			continue;
+		}
+		Item* cardItem = Item::CreateItem(card->itemId);
+		if (!cardItem) {
+			continue;
+		}
+		cardItem->setCardId(cardId);
+
+		ReturnValue ret = g_game.internalPlayerAddItem(player, cardItem, true);
+		if(ret != RET_NOERROR){
+			delete cardItem;
+			lua_pushboolean(L, false);
+			return 1;
+		}
+	}
+
+	lua_pushboolean(L, true);
+	return 1;
+}
+
 int LuaScriptInterface::luaCreateCombatObject(lua_State *L)
 {
 	//createCombatObject()
@@ -9477,6 +9579,24 @@ int LuaScriptInterface::luaIsItemTwoHanded(lua_State *L)
 		lua_pushnil(L);
 	}
 
+	return 1;
+}
+
+int LuaScriptInterface::luaIsItemCardStorage(lua_State *L)
+{
+	//isItemCardStorage(uid)
+	uint32_t uid = popNumber(L);
+
+	ScriptEnviroment* env = getScriptEnv();
+
+	Item* item = env->getItemByUID(uid);
+	if(!item){
+		reportErrorFunc(getErrorDesc(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushnil(L);
+		return 1;
+	}
+
+	lua_pushboolean(L, item->getMaxCardSlots() > 0);
 	return 1;
 }
 

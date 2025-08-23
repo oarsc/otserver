@@ -291,6 +291,8 @@ public:
 	Item* getInventoryItem(slots_t slot) const;
 	// As above, but returns NULL if the item can not be weared in that slot (armor in hand for example)
 	Item* getEquippedItem(slots_t slot) const;
+	bool isItemEquipped(Item* item) const;
+	void equippedCardsUpdated();
 
     // Returns the first found item with chosen itemid
     Item* getFirstItemById(uint32_t id) const;
@@ -300,6 +302,10 @@ public:
 
 	int32_t getVarSkill(skills_t skill) const {return varSkills[skill];}
 	void setVarSkill(skills_t skill, int32_t modifier) {varSkills[skill] += modifier;}
+
+	int32_t getVarCardSkill(skills_t skill) const {return varCardSkills[skill];}
+	void setVarCardSkill(skills_t skill, int32_t value) {varCardSkills[skill] = value;}
+	void addVarCardSkill(skills_t skill, int32_t modifier) {varCardSkills[skill] += modifier;}
 
 	int32_t getVarStats(stats_t stat) const {return varStats[stat];}
 	void setVarStats(stats_t stat, int32_t modifier);
@@ -832,6 +838,7 @@ protected:
 
 	//extra skill modifiers
 	int32_t varSkills[SKILL_LAST + 1];
+	int32_t varCardSkills[SKILL_LAST + 1];
 
 	//extra stat modifiers
 	int32_t varStats[STAT_LAST + 1];

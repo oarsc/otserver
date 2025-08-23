@@ -62,8 +62,30 @@ protected:
 	formulaType_t type;
 };
 
+struct ExtraCombatParams{
+	ExtraCombatParams() {
+		damage = 0;
+		baseDamage = 0;
+		combatType = COMBAT_NONE;
+		blockedByArmor = false;
+		blockedByShield = false;
+		useCharges = false;
+	}
+
+	int32_t damage;
+	int32_t baseDamage;
+	ConditionType_t dispelType;
+	CombatType_t combatType;
+	bool blockedByArmor;
+	bool blockedByShield;
+	bool useCharges;
+};
+
+
 struct CombatParams{
 	CombatParams() {
+		damage = 0;
+		baseDamage = 0;
 		combatType = COMBAT_NONE;
 		blockedByArmor = false;
 		blockedByShield = false;
@@ -101,6 +123,10 @@ struct CombatParams{
 	ValueCallback* valueCallback;
 	TileCallback* tileCallback;
 	TargetCallback* targetCallback;
+
+	std::list<ExtraCombatParams> extras;
+	int32_t damage;
+	int32_t baseDamage;
 };
 
 typedef bool (*COMBATFUNC)(Creature*, Creature*, const CombatParams&, void*);
@@ -301,6 +327,7 @@ public:
 	static ReturnValue canDoCombat(const Creature* attacker, const Creature* target);
 	static void doPVPDamageReduction(int32_t& healthChange, const Player* target);
 	static void checkPVPDamageReduction(const Creature* attacker, const Creature* target, int32_t& healthChange);
+	static void checkPVPDamageReduction(const Creature* attacker, const Creature* target, CombatParams& params);
 	static void postCombatEffects(Creature* caster, const Position& pos, const CombatParams& params);
 
 	static void addDistanceEffect(Creature* caster, const Position& fromPos, const Position& toPos,
