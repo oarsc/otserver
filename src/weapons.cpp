@@ -442,7 +442,7 @@ bool Weapon::useFist(Player* player, Creature* target)
 		params.combatType = COMBAT_PHYSICALDAMAGE;
 		params.blockedByArmor = true;
 		params.blockedByShield = true;
-		Attack::playerAutoattack(player, target, nullptr, -damage, params);
+		Attack::playerAutoattack(player, target, nullptr, nullptr, -damage, params);
 
 		if(!player->hasFlag(PlayerFlag_NotGainSkill)){
 			if(player->getAddAttackSkill()){
@@ -466,7 +466,7 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Creature* target, int
 
 	} else {
 		int32_t damage = getWeaponDamage(player, target, item) * damageModifier / 100;
-		Attack::playerAutoattack(player, target, this, damage, params);
+		Attack::playerAutoattack(player, target, this, item, damage, params);
 	}
 
 	if (g_config.getNumber(ConfigManager::REMOVE_AMMUNITION)) {

@@ -749,6 +749,66 @@ std::string Item::getLongName(const ItemType& it, int32_t lookDistance,
 	return s.str();
 }
 
+
+bool Item::setCard(uint16_t itemId)
+{
+	if (items[itemId].type != ITEM_TYPE_CARD) return false;
+
+	const uint16_t maxCardSlots = getMaxCardSlots();
+	if (maxCardSlots == 0) return false;
+
+	uint16_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
+	if (slot == 0) {
+		setIntAttr(ATTR_ITEM_SLOT_1, itemId);
+		return true;
+
+	} else if (maxCardSlots > 1) {
+		slot = getIntAttr(ATTR_ITEM_SLOT_2);
+		if (slot == 0) {
+			setIntAttr(ATTR_ITEM_SLOT_2, itemId);
+			return true;
+
+		} else if (maxCardSlots > 2) {
+			slot = getIntAttr(ATTR_ITEM_SLOT_3);
+			if (slot == 0) {
+				setIntAttr(ATTR_ITEM_SLOT_3, itemId);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+std::list<uint16_t> Item::getCards() const
+{
+	std::list<uint16_t> list;
+	const uint16_t maxSlots = getMaxCardSlots();
+	if (maxSlots == 0) return list;
+
+	uint16_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
+	if (slot != 0) {
+		list.push_back(slot);
+
+		if (maxSlots > 1) {
+			slot = getIntAttr(ATTR_ITEM_SLOT_2);
+
+			if (slot != 0) {
+				list.push_back(slot);
+
+				if (maxSlots > 2) {
+					slot = getIntAttr(ATTR_ITEM_SLOT_3);
+
+					if (slot != 0) {
+						list.push_back(slot);
+					}
+				}
+			}
+		}
+	}
+	return list;
+}
+
+
 std::string Item::getLongName() const
 {
 	const ItemType& it = items[id];
@@ -1266,6 +1326,9 @@ bool ItemAttributes::validateIntAttrType(itemAttrTypes type)
 	case ATTR_ITEM_FLUIDTYPE:
 	case ATTR_ITEM_DOORID:
 	case ATTR_ITEM_RANK:
+	case ATTR_ITEM_SLOT_1:
+	case ATTR_ITEM_SLOT_2:
+	case ATTR_ITEM_SLOT_3:
 		return true;
 		break;
 

@@ -214,6 +214,10 @@ std::list<Item*> MonsterType::createLootItem(const LootBlock& lootBlock)
 				tmpItem->setText(lootBlock.text);
 			}
 
+			if (lootBlock.maxSlots > 0) {
+				tmpItem->setMaxSlots(lootBlock.maxSlots);
+			}
+
 			tmpItem->assignRank();
 
 			itemList.push_back(tmpItem);
@@ -1608,6 +1612,10 @@ bool Monsters::loadLootItem(xmlNodePtr node, LootBlock& lootBlock)
 	}
 	else{
 		lootBlock.countmax = 1;
+	}
+
+	if(readXMLInteger(node, "slots", intValue) && intValue > 0){
+		lootBlock.maxSlots = (uint8_t)intValue;
 	}
 
 	if(readXMLInteger(node, "chance", intValue) || readXMLInteger(node, "chance1", intValue)){

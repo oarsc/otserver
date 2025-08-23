@@ -156,6 +156,9 @@ public:
 	void setRank(uint8_t n) {setIntAttr(ATTR_ITEM_RANK, n);}
 	uint8_t getRank() const {return (uint8_t)getIntAttr(ATTR_ITEM_RANK);}
 
+	void setMaxSlots(uint8_t n) {setIntAttr(ATTR_ITEM_SLOTS, n);}
+	uint8_t getMaxCardSlots() const {return (uint8_t)getIntAttr(ATTR_ITEM_SLOTS);}
+
 	void setFluidType(uint16_t n) {setIntAttr(ATTR_ITEM_FLUIDTYPE, n);}
 	uint16_t getFluidType() const {return (uint16_t)getIntAttr(ATTR_ITEM_FLUIDTYPE);}
 
@@ -182,7 +185,11 @@ protected:
 		ATTR_ITEM_CHARGES = 1 << 10,
 		ATTR_ITEM_FLUIDTYPE = 1 << 11,
 		ATTR_ITEM_DOORID = 1 << 12,
-		ATTR_ITEM_RANK = 1 << 13
+		ATTR_ITEM_RANK = 1 << 13,
+		ATTR_ITEM_SLOTS = 1 << 14,
+		ATTR_ITEM_SLOT_1 = 1 << 15,
+		ATTR_ITEM_SLOT_2 = 1 << 16,
+		ATTR_ITEM_SLOT_3 = 1 << 17
 	};
 
 	bool hasAttribute(itemAttrTypes type) const;
@@ -361,6 +368,9 @@ public:
 	const std::string& getName() const {return items[id].name;}
 	const std::string& getPluralName() const {return items[id].pluralName;}
 	std::string getLongName() const;
+
+	bool setCard(uint16_t itemId);
+	std::list<uint16_t> getCards() const;
 
 	// get the number of items
 	uint16_t getItemCount() const {return count;}

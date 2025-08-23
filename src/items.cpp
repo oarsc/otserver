@@ -513,6 +513,9 @@ bool Items::loadFromXml(const std::string& datadir)
 								else if(asLowerCaseString(strValue) == "rune"){
 									it.type = ITEM_TYPE_RUNE;
 								}
+								else if(asLowerCaseString(strValue) == "card"){
+									it.type = ITEM_TYPE_CARD;
+								}
 								else{
 									std::cout << "Warning: [Items::loadFromXml] " << "Unknown type " << strValue  << std::endl;
 								}
@@ -1372,6 +1375,40 @@ bool Items::loadFromXml(const std::string& datadir)
 							if(readXMLInteger(itemAttributesNode, "value", intValue)){
 								it.currency = intValue;
 								currencyMap[it.currency] = &it;
+							}
+						}
+						else if(asLowerCaseString(strValue) == "cardattachment"){
+							if(it.type == ITEM_TYPE_CARD && readXMLString(itemAttributesNode, "value", strValue)){
+								if(asLowerCaseString(strValue) == "weapon"){
+									it.cardAttachment = CARD_ATTACHMENT_WEAPON;
+								}
+								else if(asLowerCaseString(strValue) == "shield"){
+									it.cardAttachment = CARD_ATTACHMENT_SHIELD;
+								}
+								else if(asLowerCaseString(strValue) == "any-armor"){
+									it.cardAttachment = CARD_ATTACHMENT_ANY_ARMOR;
+								}
+								else if(asLowerCaseString(strValue) == "helmet"){
+									it.cardAttachment = CARD_ATTACHMENT_HELMET;
+								}
+								else if(asLowerCaseString(strValue) == "chest"){
+									it.cardAttachment = CARD_ATTACHMENT_CHEST;
+								}
+								else if(asLowerCaseString(strValue) == "legs"){
+									it.cardAttachment = CARD_ATTACHMENT_LEGS;
+								}
+								else if(asLowerCaseString(strValue) == "boots"){
+									it.cardAttachment = CARD_ATTACHMENT_BOOTS;
+								}
+								else if(asLowerCaseString(strValue) == "ring"){
+									it.cardAttachment = CARD_ATTACHMENT_RING;
+								}
+								else if(asLowerCaseString(strValue) == "necklace"){
+									it.cardAttachment = CARD_ATTACHMENT_NECKLACE;
+								}
+								else{
+									std::cout << "Warning: [Items::loadFromXml] Unknown cardAttachment value " << strValue << std::endl;
+								}
 							}
 						}
 						else{

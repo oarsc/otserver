@@ -29,6 +29,7 @@ void Attack::playerAutoattack(
 	Player* player,
 	Creature* target,
 	const Weapon* weapon,
+	const Item* item,
 	int32_t damage,
 	const CombatParams& params
 ) {

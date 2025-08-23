@@ -27,10 +27,11 @@
 class Attack {
 public:
     static void playerAutoattack(
-        Player* player, 
-        Creature* target, 
-        const Weapon* weapon, 
-        int32_t damage, 
+        Player* player,
+        Creature* target,
+        const Weapon* weapon,
+        const Item* item,
+        int32_t damage,
         const CombatParams& params
     );
 
