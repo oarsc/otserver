@@ -61,19 +61,6 @@ enum ItemTypes_t {
 	ITEM_TYPE_LAST
 };
 
-enum CardAttachment_t {
-	CARD_ATTACHMENT_WEAPON = 0,
-	CARD_ATTACHMENT_SHIELD,
-	CARD_ATTACHMENT_HELMET,
-	CARD_ATTACHMENT_ANY_ARMOR,
-	CARD_ATTACHMENT_CHEST,
-	CARD_ATTACHMENT_LEGS,
-	CARD_ATTACHMENT_BOOTS,
-	CARD_ATTACHMENT_RING,
-	CARD_ATTACHMENT_NECKLACE,
-	CARD_ATTACHMENT_LAST
-};
-
 struct Abilities{
 	Abilities();
 
@@ -266,7 +253,6 @@ public:
 	Condition* condition;
 	CombatType_t combatType;
 	bool replaceable;
-	CardAttachment_t cardAttachment;
 };
 
 template<typename A>
@@ -315,8 +301,6 @@ private:
 	A* m_data;
 	uint32_t m_size;
 };
-
-
 
 class Items{
 public:

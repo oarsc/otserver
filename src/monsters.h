@@ -37,7 +37,8 @@ struct LootBlock{
 	int subType;
 	int actionId;
 	std::string text;
-	uint8_t maxSlots;
+	uint8_t maxCardSlots;
+	uint32_t cardId;
 
 	typedef std::list<LootBlock> LootItems;
 	LootItems childLoot;
@@ -51,7 +52,8 @@ struct LootBlock{
 		subType = -1;
 		actionId = -1;
 		text = "";
-		maxSlots = 0;
+		maxCardSlots = 0;
+		cardId = 0;
 		dropEmpty = false;
 	}
 };

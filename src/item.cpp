@@ -28,16 +28,19 @@
 #include "mailbox.h"
 #include "house.h"
 #include "game.h"
+#include "r/cards.h"
 #include "luascript.h"
 #include "actions.h"
 #include "combat.h"
 #include "weapons.h"
 #include "beds.h"
+#include <cstdint>
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 
 extern Game g_game;
+extern Cards g_cards;
 extern Weapons* g_weapons;
 extern ConfigManager g_config;
 
@@ -365,6 +368,42 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream& propStream)
 			setRank(_rank);
 			break;
 		}
+		case ATTR_CARD_ID:
+		{
+			if (isCard()) {
+				uint32_t _cardId = 0;
+				if(!propStream.GET_UINT32(_cardId)){
+					return ATTR_READ_ERROR;
+				}
+				
+				setCardId(_cardId);
+			}
+			break;
+		}
+		case ATTR_CARD_SLOTS:
+		{
+			uint8_t _slots = 0;
+			if(!propStream.GET_UINT8(_slots)){
+				return ATTR_READ_ERROR;
+			}
+
+			setMaxCardSlots(_slots);
+			break;
+		}
+		case ATTR_CARD_SLOT_1:
+		case ATTR_CARD_SLOT_2:
+		case ATTR_CARD_SLOT_3:
+		{
+			uint32_t _slot = 0;
+			if(!propStream.GET_UINT32(_slot)){
+				return ATTR_READ_ERROR;
+			}
+
+			if (_slot != 0) {
+				addCardToEmptySlot(_slot);
+			}
+			break;
+		}
 		case ATTR_ACTION_ID:
 		{
 			uint16_t _actionid = 0;
@@ -587,6 +626,39 @@ bool Item::serializeAttr(PropWriteStream& propWriteStream) const
 		propWriteStream.ADD_UINT8(_rank);
 	}
 
+	if(isCard()){
+		uint32_t cardId = getCardId();
+		if (cardId > 0) {
+			propWriteStream.ADD_UINT8(ATTR_CARD_ID);
+			propWriteStream.ADD_UINT32(cardId);
+		}
+	}
+
+	if(const uint8_t maxCardSlots = getMaxCardSlots()){
+		propWriteStream.ADD_UINT8(ATTR_CARD_SLOTS);
+		propWriteStream.ADD_UINT8(maxCardSlots);
+	}
+
+	auto cardsInSlot = getCardsInSlot();
+	if (cardsInSlot.size() > 0) {
+		auto it = cardsInSlot.begin();
+		if (it != cardsInSlot.end()) {
+			propWriteStream.ADD_UINT8(ATTR_CARD_SLOT_1);
+			propWriteStream.ADD_UINT32(*it);
+			++it;
+		}
+		if (it != cardsInSlot.end()) {
+			propWriteStream.ADD_UINT8(ATTR_CARD_SLOT_2);
+			propWriteStream.ADD_UINT32(*it);
+			++it;
+		}
+		if (it != cardsInSlot.end()) {
+			propWriteStream.ADD_UINT8(ATTR_CARD_SLOT_3);
+			propWriteStream.ADD_UINT32(*it);
+			++it;
+		}
+	}
+
 	if(hasCharges()){
 		uint16_t _count = getCharges();
 		propWriteStream.ADD_UINT8(ATTR_CHARGES);
@@ -750,14 +822,14 @@ std::string Item::getLongName(const ItemType& it, int32_t lookDistance,
 }
 
 
-bool Item::setCard(uint16_t itemId)
+bool Item::addCardToEmptySlot(uint32_t itemId)
 {
 	if (items[itemId].type != ITEM_TYPE_CARD) return false;
 
-	const uint16_t maxCardSlots = getMaxCardSlots();
+	const uint8_t maxCardSlots = getMaxCardSlots();
 	if (maxCardSlots == 0) return false;
 
-	uint16_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
+	uint32_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
 	if (slot == 0) {
 		setIntAttr(ATTR_ITEM_SLOT_1, itemId);
 		return true;
@@ -779,13 +851,13 @@ bool Item::setCard(uint16_t itemId)
 	return false;
 }
 
-std::list<uint16_t> Item::getCards() const
+std::list<uint32_t> Item::getCardsInSlot() const
 {
-	std::list<uint16_t> list;
-	const uint16_t maxSlots = getMaxCardSlots();
+	std::list<uint32_t> list;
+	const uint8_t maxSlots = getMaxCardSlots();
 	if (maxSlots == 0) return list;
 
-	uint16_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
+	uint32_t slot = getIntAttr(ATTR_ITEM_SLOT_1);
 	if (slot != 0) {
 		list.push_back(slot);
 
@@ -819,6 +891,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 	const Item* item /*= NULL*/, int32_t subType /*= -1*/, bool addArticle /*= true*/)
 {
 	std::stringstream s;
+	const Card* card = nullptr;
 
 	if (item){
 		subType = item->getSubType();
@@ -832,6 +905,13 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 
 			s << it.pluralName;
 		}
+		else if (item && item->getCardId() > 0 && it.type == ITEM_TYPE_CARD) {
+			card = g_cards.getCardById(item->getCardId());
+			if (!card->article.empty()){
+				s << card->article << " ";
+			}
+			s << card->name;
+		}
 		else{
 			if (!it.article.empty()){
 				s << it.article << " ";
@@ -843,7 +923,12 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		s << "an item of type " << it.id;
 	}
 
-	if (it.isRune()){
+	if (card && card->description.length() > 0) {
+		if (lookDistance <= 1){
+			s << "." << std::endl << card->description;
+		}
+	}
+	else if (it.isRune()){
 		if (it.runeLevel > 0 || it.runeMagLevel > 0){
 			if (it.runeLevel > 0){
 				s << " for level " << it.runeLevel;
@@ -1326,6 +1411,8 @@ bool ItemAttributes::validateIntAttrType(itemAttrTypes type)
 	case ATTR_ITEM_FLUIDTYPE:
 	case ATTR_ITEM_DOORID:
 	case ATTR_ITEM_RANK:
+	case ATTR_ITEM_SLOTS:
+	case ATTR_ITEM_CARD_REF:
 	case ATTR_ITEM_SLOT_1:
 	case ATTR_ITEM_SLOT_2:
 	case ATTR_ITEM_SLOT_3:

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cards>
+	<card id="1" article="a" name="dragon card">
+		<description value="Add 20% fire damage to a weapon."/>
+		<attachment value="weapon"/>
+		<effects>
+			<script mode="add" source="poison_arrow.lua"/>
+		</effects>
+	</card>
+</cards>

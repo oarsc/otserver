@@ -66,5 +66,7 @@
 		<item id="2187" chance="1000"/><!-- 1% wand of inferno -->
 		<item id="2509" chance="15000"/><!-- 15% steel shield -->
 		<item id="2516" chance="300"/><!-- 0.3% dragon shield -->
+
+		<item id="5109" card="1" chance="100000"/><!-- 100% card -->
 	</loot>
 </monster>

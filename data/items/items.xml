@@ -11795,10 +11795,8 @@
 		<attribute key="decayTo" value="0"/>
 		<attribute key="duration" value="1"/>
 	</item>
-	<item id="5109" article="a" name="dragon card">
-		<attribute key="description" value="Add 20% fire damage to a weapon."/>
+	<item id="5109" article="a" name="card">
 		<attribute key="type" value="card"/>
-		<attribute key="cardAttachment" value="weapon"/>
 		<attribute key="weight" value="20"/>
 	</item>
 	

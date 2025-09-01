@@ -105,7 +105,14 @@ enum AttrTypes_t{
 	// This is NOT stored in serializeAttr, but rather used by IOMapSerialize
 	// look at that code for the ugly hack that makes this work. :)
 	ATTR_CONTAINER_ITEMS = 23,
+
+	// New fields
 	ATTR_RANK = 24,
+	ATTR_CARD_ID = 25,
+	ATTR_CARD_SLOTS = 26,
+	ATTR_CARD_SLOT_1 = 27,
+	ATTR_CARD_SLOT_2 = 28,
+	ATTR_CARD_SLOT_3 = 29,
 };
 
 enum Attr_ReadValue{
@@ -156,8 +163,11 @@ public:
 	void setRank(uint8_t n) {setIntAttr(ATTR_ITEM_RANK, n);}
 	uint8_t getRank() const {return (uint8_t)getIntAttr(ATTR_ITEM_RANK);}
 
-	void setMaxSlots(uint8_t n) {setIntAttr(ATTR_ITEM_SLOTS, n);}
+	void setMaxCardSlots(uint8_t n) {setIntAttr(ATTR_ITEM_SLOTS, n);}
 	uint8_t getMaxCardSlots() const {return (uint8_t)getIntAttr(ATTR_ITEM_SLOTS);}
+
+	void setCardId(uint32_t n) {setIntAttr(ATTR_ITEM_CARD_REF, n);}
+	uint32_t getCardId() const {return (uint32_t)getIntAttr(ATTR_ITEM_CARD_REF);}
 
 	void setFluidType(uint16_t n) {setIntAttr(ATTR_ITEM_FLUIDTYPE, n);}
 	uint16_t getFluidType() const {return (uint16_t)getIntAttr(ATTR_ITEM_FLUIDTYPE);}
@@ -189,7 +199,8 @@ protected:
 		ATTR_ITEM_SLOTS = 1 << 14,
 		ATTR_ITEM_SLOT_1 = 1 << 15,
 		ATTR_ITEM_SLOT_2 = 1 << 16,
-		ATTR_ITEM_SLOT_3 = 1 << 17
+		ATTR_ITEM_SLOT_3 = 1 << 17,
+		ATTR_ITEM_CARD_REF = 1 << 18
 	};
 
 	bool hasAttribute(itemAttrTypes type) const;
@@ -337,6 +348,7 @@ public:
 	bool isBlocking(const Creature* creature) const {return items[id].blockSolid;}
 	bool isStackable() const {return items[id].stackable;}
 	bool isRune() const {return items[id].isRune();}
+	bool isCard() const {return items[id].type == ITEM_TYPE_CARD;}
 	bool isFluidContainer() const {return (items[id].isFluidContainer());}
 	bool isAlwaysOnTop() const {return items[id].alwaysOnTop;}
 	bool isGroundTile() const {return items[id].isGroundTile();}
@@ -369,8 +381,8 @@ public:
 	const std::string& getPluralName() const {return items[id].pluralName;}
 	std::string getLongName() const;
 
-	bool setCard(uint16_t itemId);
-	std::list<uint16_t> getCards() const;
+	bool addCardToEmptySlot(uint32_t itemId);
+	std::list<uint32_t> getCardsInSlot() const;
 
 	// get the number of items
 	uint16_t getItemCount() const {return count;}
