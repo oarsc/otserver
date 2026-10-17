@@ -4,12 +4,7 @@ if [ -f "/.dockerenv" ] || [ -f "/.dockerinit" ]; then
   cd "/otserver"
   ./build/src/otserv
 else
-  echo " [ ◆ ] Running command on docker"
-
-  if [ "$(docker inspect -f '{{.State.Running}}' "ots")" = "false" ]; then
-    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-    sh "$SCRIPT_DIR/setup-and-run-docker.sh" > /dev/null
-  fi
-
-  docker exec -it ots otserv
+  echo " [ ◆  ] Running command on docker"
+  SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+  sh "$SCRIPT_DIR/do" otserv "$@"
 fi
